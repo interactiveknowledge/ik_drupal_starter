@@ -4,4 +4,32 @@
  * Enables modules and site configuration for a standard site installation.
  */
 
-// Add any custom code here like hook implementations.
+/**
+ * Implements hook_install_tasks().
+ */
+function ik_starter_install_tasks() {
+  $tasks = [];
+
+  $tasks['ik_starter_set_default_theme'] = [];
+
+  return $tasks;
+}
+
+/**
+ * Sets the default and administration themes.
+ */
+function ik_starter_set_default_theme() {
+  Drupal::configFactory()
+    ->getEditable('system.theme')
+    ->set('default', 'adminimal_theme')
+    ->set('admin', 'adminimal_theme')
+    ->save(TRUE);
+
+  // Use the admin theme for creating content.
+  if (Drupal::moduleHandler()->moduleExists('node')) {
+    Drupal::configFactory()
+      ->getEditable('node.settings')
+      ->set('use_admin_theme', TRUE)
+      ->save(TRUE);
+  }
+}

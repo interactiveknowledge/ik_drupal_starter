@@ -1,0 +1,7 @@
+name: IK Electron Logger Module
+description: Creates rest endpoint to allow electron logs remotely.
+package: IK
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
+version: VERSION

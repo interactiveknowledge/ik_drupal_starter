@@ -1,0 +1,20 @@
+<?php
+
+function ik_electron_logger_install() {
+  $database = \Drupal::database();
+  $query = $database->query("CREATE TABLE `electron_logger` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `application` varchar(255) NOT NULL DEFAULT '',
+    `version` varchar(20) NOT NULL DEFAULT '',
+    `user` varchar(100) DEFAULT NULL,
+    `level` varchar(15) DEFAULT NULL,
+    `message` varchar(255) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+}
+
+function ik_electron_logger_uninstall() {
+  $database = \Drupal::database();
+  $query = $database->query("DROP TABLE `electron_logger`");
+}

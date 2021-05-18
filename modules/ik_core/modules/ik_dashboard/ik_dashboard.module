@@ -1,0 +1,33 @@
+<?php
+use \Drupal\Core\Url;
+
+/**
+ * Implements hook_menu_local_tasks_alter
+ */
+function ik_dashboard_menu_local_tasks_alter(&$data, $route_name) {
+  // If it's an entity route, and we have our docs tab link, let's alter it to be the correct url and parameters  
+  if (strpos($route_name, 'entity.') !== false && isset($data['tabs'][0])) {
+    foreach ($data['tabs'][0] as $route => $value) {
+      if (strpos($route, 'ik_dashboard.docs') !== false) {
+        $entity = null;
+        foreach (\Drupal::routeMatch()->getParameters() as $param) {
+          if ($param instanceof \Drupal\Core\Entity\EntityInterface) {
+            $entity = $param;
+            break;
+          }
+        }
+
+        if ($entity) {
+          $url = Url::fromRoute('ik_dashboard.docs.entities');
+          $url->setRouteParameters([
+            'type' => $entity->getEntityType()->id(),
+            'bundle' => $entity->bundle()
+          ]);
+          $data['tabs'][0][$route]['#link']['url'] = $url;
+        } else {
+          unset($data['tabs'][0][$route]);
+        }
+      }
+    }    
+  }
+}

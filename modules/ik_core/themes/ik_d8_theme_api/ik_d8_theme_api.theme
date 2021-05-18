@@ -1,0 +1,136 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Bartik theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+
+function ik_d8_theme_api_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {
+  // Work-around for a core bug affecting admin themes. See issue #943212.
+  if (isset($form_id)) {
+    return;
+  }
+
+  $form['theme_settings']['#open'] = false;
+  $form['logo']['#open'] = false;
+  $form['favicon']['#open'] = false;
+
+  $form['frontend_forwarding'] = array(
+    '#type'          => 'checkbox',
+    '#title'         => t('Turn on forwarding of front-end pages'),
+    '#description'   => t('Will forward non-authenticated users to the url set below.'),
+    '#default_value' => theme_get_setting('frontend_forwarding')
+  );
+
+  $form['frontend_url'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Front End URL'),
+    '#description'   => t('Url to forward users to if the above is checked.'),
+    '#default_value' => theme_get_setting('frontend_url')
+  );
+
+
+  $form['frontend_iframe_url'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Front End URL (for iframe if different from above)'),
+    '#default_value' => theme_get_setting('frontend_iframe_url')
+  );
+
+  $form['frontend_show_iframe'] = array(
+    '#type'          => 'checkbox',
+    '#title'         => t('Turn on iframe on node view'),
+    '#description'   => t('Will show an iframe of content of frontend url'),
+    '#default_value' => theme_get_setting('frontend_show_iframe')
+  );
+}
+
+function ik_d8_theme_api_preprocess_html(&$variables) {
+  $variables['login_class'] = $variables['is_admin'] ? 'logged-in' : 'logged-out';
+
+  /**
+   *  Forward non-admin pages to frontend URL 
+   */
+  $forwarding = theme_get_setting('frontend_forwarding');
+  $frontendUrl = theme_get_setting('frontend_url');
+
+  $variables['#attached']['library'][] = 'ik_d8_theme_api/js-library';
+  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['frontendUrl'] = theme_get_setting('frontend_url');
+  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['frontendIframeUrl'] = theme_get_setting('frontend_iframe_url') ? theme_get_setting('frontend_iframe_url') :  theme_get_setting('frontend_url');
+  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['showIframe'] = theme_get_setting('frontend_show_iframe');
+
+  $route = \Drupal::routeMatch()->getRouteObject();
+  $is_admin = \Drupal::service('router.admin_context')->isAdminRoute($route);
+
+  // Check for node/*/edit
+  $current_path = \Drupal::service('path.current')->getPath();
+  $current_uri = \Drupal::request()->getRequestUri();
+  if(preg_match('/node\/(\d+)\/edit/', $current_path)) {
+    $is_admin = true;
+  }
+  // Check for taxonomy/term/edit
+  if(preg_match('/taxonomy\/term\/(\d+)\/edit/', $current_path)) {
+    $is_admin = true;
+  }
+  // User login/register/password
+  if ($current_path === '/user' || $current_path === '/user/login' || $current_path === '/user/register' || $current_path === '/user/password') {
+    $is_admin = true;
+  }
+
+  if(preg_match('/user\/reset\//', $current_path)) {
+    $is_admin = true;
+  }
+
+  // Check for admin paths?
+  if(preg_match('/admin\//', $current_path)) {
+    $is_admin = true;
+  }
+
+  // Check for ik_engagement entities.
+  if(preg_match('/admin\/content\/engagement\//', $current_path)) {
+    $defaults =  $route->getDefaults();
+    if (isset($defaults['_entity_view'])) {
+      $is_admin = false;
+    }
+  }
+
+  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['vid'] = strtotime('now');
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    // You can get nid and anything else you need from the node object.
+    $vid = $node->getRevisionId();
+
+    if ($vid) {
+      $variables['#attached']['drupalSettings']['ik_d8_theme_api']['vid'] = $vid;
+    }
+  }
+  
+  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['forwarding'] = (boolean) $forwarding;
+  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['isAdmin'] = $is_admin;
+  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['currentPath'] = $current_uri;
+  
+}
+
+function ik_d8_theme_api_preprocess_page(&$variables) {
+  $variables['login_form'] = FALSE;
+
+  if (!\Drupal::currentUser()->id()) {
+    $form = Drupal::formBuilder()->getForm(Drupal\user\Form\UserLoginForm::class) ; 
+    $render = Drupal::service('renderer');
+    $variables['login_form'] = $render->renderPlain($form);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter for blocks.
+ */
+function ik_d8_theme_api_theme_suggestions_block_alter(&$suggestions, $variables) {
+
+  // Load theme suggestions for blocks from parent theme.
+  foreach ($suggestions as &$suggestion) {
+    $suggestion = str_replace('ik_d8_theme_api_', 'adminimal_theme_', $suggestion);
+  }
+}

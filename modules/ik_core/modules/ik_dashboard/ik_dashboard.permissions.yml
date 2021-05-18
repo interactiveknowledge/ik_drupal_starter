@@ -1,0 +1,4 @@
+edit documentation:
+  description: 'Edit documentation on content types'
+  title: 'Edit Documentation'
+  restrict access: TRUE

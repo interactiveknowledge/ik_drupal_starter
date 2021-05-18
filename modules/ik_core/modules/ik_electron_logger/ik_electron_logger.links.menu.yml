@@ -1,0 +1,4 @@
+ik_electron_logger.main:
+  route_name: ik_electron_logger.main
+  title: Electron Logs
+  parent: system.admin_reports

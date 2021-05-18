@@ -1,0 +1,3 @@
+ik_dashboard.docs:
+  deriver: 'Drupal\ik_dashboard\Plugin\Derivative\DynamicLocalTasks'
+  weight: 100

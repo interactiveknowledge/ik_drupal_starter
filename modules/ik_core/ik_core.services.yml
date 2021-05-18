@@ -1,0 +1,5 @@
+services:
+  alter_cache_header:
+    class: '\Drupal\ik_core\EventSubscriber\AlterCacheHeader'
+    tags:
+      - { name: 'event_subscriber' }

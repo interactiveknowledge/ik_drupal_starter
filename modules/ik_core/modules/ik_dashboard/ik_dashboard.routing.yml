@@ -1,0 +1,56 @@
+ik_dashboard.main:
+  path: '/admin/dashboard'
+  defaults:
+    _title: 'Admin Dashboard'
+  requirements:
+    _role: 'authenticated'
+  options:
+    _admin_route: TRUE
+    
+ik_dashboard.docs.main:
+  path: '/docs'
+  defaults:
+    _controller: '\Drupal\ik_dashboard\Controller\DocsMainController::content'
+  requirements:
+    _role: 'authenticated'
+  options:
+    _admin_route: TRUE
+
+ik_dashboard.docs.tab:
+  path: '/docs/tab'
+  defaults:
+    _controller: '\Drupal\ik_dashboard\Controller\DocsController::tab'
+  requirements:
+    _role: 'authenticated'
+  options:
+    _admin_route: TRUE
+
+ik_dashboard.docs.entities:
+  path: '/docs/{type}/{bundle}'
+  defaults:
+    _controller: '\Drupal\ik_dashboard\Controller\DocsController::content'
+    _title_callback: '\Drupal\ik_dashboard\Controller\DocsController::title'
+  requirements:
+    _role: 'authenticated'
+  options:
+    _admin_route: TRUE
+
+ik_dashboard.docs.main_edit:
+  path: '/docs/edit'
+  defaults:
+    _form: '\Drupal\ik_dashboard\Form\DocsMainForm'
+    _title: 'Manage documentation settings'
+  requirements:
+    _permission: 'edit documentation'
+  options:
+    _admin_route: TRUE
+
+ik_dashboard.docs.entities_edit:
+  path: '/docs/{type}/{bundle}/edit'
+  defaults:
+    _form: '\Drupal\ik_dashboard\Form\DocsForm'
+    _title_callback: '\Drupal\ik_dashboard\Controller\DocsController::title'
+  requirements:
+    _permission: 'edit documentation'
+  options:
+    _admin_route: TRUE

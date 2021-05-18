@@ -1,0 +1,10 @@
+ik_dashboard.main:
+  route_name: ik_dashboard.main
+  title: Dashboard
+  parent: system.admin
+  weight: -11
+ik_dashboard.docs.main:
+  route_name: ik_dashboard.docs.main
+  title: Documentation
+  parent: ik_dashboard.main
+  weight: -11

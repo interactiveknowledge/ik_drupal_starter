@@ -1,0 +1,9 @@
+name: IK Media Iframe Module
+description: Provides an iframe media source and field formatter.
+package: IK
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
+version: VERSION
+dependencies:
+  - drupal:media

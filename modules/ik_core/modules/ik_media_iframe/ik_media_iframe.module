@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Contains ik_media_iframe.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function ik_media_iframe_theme() {
+  return [
+    'media_iframe_embed' => [
+      'variables' => [
+        'iframe' => NULL
+      ],
+    ],
+  ];
+}

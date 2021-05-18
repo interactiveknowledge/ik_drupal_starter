@@ -1,0 +1,11 @@
+name: IK Dashboard Module
+description: Provides setup for an admin dashboard for IK clients
+package: IK
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
+dependencies:
+  - block
+  - ik_core
+  - page_manager
+  - page_manager_ui

@@ -1,0 +1,6 @@
+name: IK Core Module
+description: Contains custom helper plugins and modules for IK Sites
+package: IK
+type: module
+core_version_requirement: ^8.8 || ^9
+version: VERSION

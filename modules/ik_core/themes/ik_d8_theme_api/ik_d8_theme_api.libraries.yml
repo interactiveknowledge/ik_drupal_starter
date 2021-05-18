@@ -1,0 +1,12 @@
+global-styling:
+  version: 1.1
+  css:
+    base:
+      css/base/elements.css: { weight: 2000 }
+js-library:
+  version: 1.1
+  js:
+    js/base.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

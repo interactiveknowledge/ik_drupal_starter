@@ -1,0 +1,9 @@
+ik_electron_logger.main:
+  path: '/admin/reports/electron-logs'
+  defaults:
+    _controller: '\Drupal\ik_electron_logger\Controller\ElectronLogsController::content'
+    _title: 'Electron Logs'
+  requirements:
+    _role: 'authenticated'
+  options:
+    _admin_route: TRUE

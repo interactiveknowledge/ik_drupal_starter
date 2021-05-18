@@ -1,0 +1,8 @@
+name: IK Entity Reference Delete Module
+description: Remove references to a deleted entity to prevent a common Drupal problem (Missing Ref).
+package: IK
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
+depencencies:
+  - ik_core

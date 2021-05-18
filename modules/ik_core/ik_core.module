@@ -1,0 +1,168 @@
+<?php 
+
+/**
+ * @file
+ * Contains ik_core.module.
+ */
+
+use \Drupal\Core\Form\FormStateInterface;
+use \Drupal\paragraphs\Entity\Paragraph;
+
+
+
+function ik_core_form_alter(&$form, FormStateInterface $form_state, $form_id) {  
+  /**
+   *  Hide unused/unnecessary metatags.
+   */
+  if (isset($form['field_meta_tags'])) {
+    // @TODO create an admin interface where we can set this.
+    // As well as change our own descriptions of the fields.
+    $keepFields = ['title', 'description', 'og_title', 'og_description', 'og_image', 'og_image_alt', 'google_plus_name', 'google_plus_description', 'twitter_cards_type', 'twitter_cards_description', 'twitter_cards_title'];
+    $sections = ['basic', 'open_graph', 'google_plus', 'twitter_cards', 'advanced', 'facebook'];
+
+    if (isset($form['field_meta_tags']['widget']) && isset($form['field_meta_tags']['widget'][0])) {
+      unset($form['field_meta_tags']['widget'][0]['intro_text']);
+      unset($form['field_meta_tags']['widget'][0]['advanced']);
+      unset($form['field_meta_tags']['widget'][0]['facebook']);
+
+      foreach ($sections as $section) {
+        if (isset($form['field_meta_tags']['widget'][0][$section])) {
+          foreach ($form['field_meta_tags']['widget'][0][$section] as $field => $data) {
+            
+            if (strpos($field, '#') === false && !in_array($field, $keepFields)) {
+              $form['field_meta_tags']['widget'][0][$section][$field]['#access'] = false;
+            }
+          }
+        }
+      }
+
+      // Set our own descriptions
+      $form['field_meta_tags']['widget'][0]['basic']['#title'] = 'Google Search Results';
+      $form['field_meta_tags']['widget'][0]['basic']['#description'] = 'The following tags will show in the page title of the browser and Google Search results.';
+      $form['field_meta_tags']['widget'][0]['basic']['title']['#description'] = t('It is recommended that the title is no greater than 55 - 65 characters long, including spaces.');
+      $form['field_meta_tags']['widget'][0]['basic']['description']['#description'] = t('A brief and concise summary of the page\'s content, preferably 320 characters or less.');
+      $form['field_meta_tags']['widget'][0]['open_graph']['#title'] = 'Facebook Sharing Settings';
+      $form['field_meta_tags']['widget'][0]['open_graph']['#description'] = 'These tags are also the default when others are not present.';
+      $form['field_meta_tags']['widget'][0]['open_graph']['og_image']['#description'] = 'The URL of an image which should represent the content. The image must be at least 200 x 200 pixels in size; 600 x 316 pixels is a recommended minimum size, and for best results use an image least 1200 x 630 pixels in size. Supports PNG, JPEG and GIF formats.';
+      $form['field_meta_tags']['widget'][0]['open_graph']['og_image_alt']['#description'] = 'A description of what is in the image, not a caption.';
+    }
+  }
+
+  // Layout Builder field
+  // Set --None-- to Default instead when it's activated.
+  if (isset($form['layout_selection']) && isset($form['layout_selection']['widget']['#options']['_none'])) {
+    $form['layout_selection']['widget']['#options']['_none'] = 'Default';
+  }
+}
+
+/**
+ * Before saving a paragraph entity, make sure all the fields are filled out.
+ *
+ * @param Drupal\Core\Entity\EntityInterface $entity
+ * @return void
+ */
+function ik_core_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  $type = $entity->getEntityType()->id();
+  $connection = \Drupal::service('database');
+  $fields = [];
+
+  // Only look at non-paragraphs
+  if ($type !== 'paragraph') {
+
+    // Find all of our fields that are paragraphs entity reference revisions.
+    $map = \Drupal::service('entity.manager')->getFieldMap();
+    if (isset($map[$type])) {
+      
+      foreach ($map[$type] as $field => $data) {
+        if ($data['type'] === 'entity_reference_revisions') {
+
+          // If this entity has this paragraph field, get the value.
+          if ($entity->hasField($field)) {
+            $value = $entity->get($field)->getValue();
+            
+            foreach ($value as $key => $target) {
+              if (!isset($target['subform'])) {
+                continue;
+              }
+
+              $pid = $target['target_id'];
+              $fields = array_keys($target['subform']);
+              $empties = [];
+
+              // Load each paragraph to check if they're empty.
+              $paragraph = Paragraph::load($pid);
+
+              // Check each of our non-base fields' values.
+              foreach ($fields as $f) {
+                if (!$paragraph->get($f)->getValue()) {
+                  $empties[] = $f;
+                }
+              }
+
+              // If the amount of empties equals the number of our fields, remove the item.
+              if ($empties === $fields) {
+                unset($value[$key]);
+                $entity->set($field, $value);
+                $paragraph->delete();
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+ /**
+  * hook_entity_create()
+  *
+  * @param Drupal\Core\Entity\EntityInterface $entity
+  * @return void
+  */
+function ik_core_entity_create (Drupal\Core\Entity\EntityInterface $entity) {
+  $type = $entity->getEntityType()->id();
+
+  if (in_array($type, _ik_core_custom_purge_entities())) {
+    \Drupal\Core\Cache\Cache::invalidateTags(_ik_core_custom_purge_entities_tags());
+  }
+}
+
+ /**
+  * hook_entity_update()
+  *
+  * @param Drupal\Core\Entity\EntityInterface $entity
+  * @return void
+  */
+function ik_core_entity_update (Drupal\Core\Entity\EntityInterface $entity) {
+  $type = $entity->getEntityType()->id();
+
+  if (in_array($type, _ik_core_custom_purge_entities())) {
+    \Drupal\Core\Cache\Cache::invalidateTags(_ik_core_custom_purge_entities_tags());
+  }
+}
+
+
+/**
+ * Returns an array of entities that should trigger invalidateTags when created/updated.
+ *
+ * @return array
+ */
+function _ik_core_custom_purge_entities() {
+  return ['content_moderation_state', 'engagement', 'node'];
+}
+
+/**
+ * Returns an array of custom cache tags
+ *
+ * @return array
+ */
+function _ik_core_custom_purge_entities_tags() {
+  return [
+    'page_manager_route_name:subrequests.front-controller',
+    'page_manager_route_name:view.blog_related_content.rest_export_1',
+    'page_manager_route_name:view.resources_related_content.rest_export_1',
+    'page_manager_route_name:view.search_events.rest_export_1',
+    'page_manager_route_name:view.search_resources.rest_export_1',
+    'search_api_list:fetzer_solr'
+    ];
+}

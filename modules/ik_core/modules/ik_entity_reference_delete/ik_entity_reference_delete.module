@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * If a node is no longer published, look for it in existing entity queues and
+ * remove it.
+ * hook_entity_update()
+ * 
+ * @param Drupal\Core\Entity\EntityInterface $entity
+ * @return void
+ */
+function ik_entity_reference_delete_node_update(Drupal\node\Entity\Node $node) {
+  $moduleHandler = \Drupal::service('module_handler');
+
+  if ($moduleHandler->moduleExists('entityqueue') &&
+    $node->get('status')->value == FALSE
+  ) {
+
+    $eqids = \Drupal::entityQuery('entity_subqueue')
+      ->condition('items', [$node->id()], 'IN')
+      ->execute();
+
+    if (!empty($eqids)) {
+      $eqs = \Drupal\entityqueue\Entity\EntitySubqueue::loadMultiple($eqids);
+
+      foreach ($eqs as $eq) {
+        $eq->removeItem($node);
+        $eq->save();
+      }
+    }
+
+  }
+
+}
+
+/**
+ * hook_entity_predelete()
+ * 
+ * @param Drupal\Core\Entity\EntityInterface $entity
+ * @return void
+ */
+function ik_entity_reference_delete_node_predelete(Drupal\Core\Entity\EntityInterface $entity) {
+  $current_bundle = $entity->bundle();
+  $current_id = $entity->id();
+
+  $fids = \Drupal::entityQuery('field_config')
+    ->condition('field_type', 'entity_reference')
+    ->condition('settings.handler', 'default:node')
+    ->execute();
+
+  $ers = [];
+
+  foreach ($fids as $fid) {
+
+    $field = \Drupal\field\Entity\FieldConfig::load($fid);
+
+    $settings = $field->get('settings');
+
+    if (in_array($current_bundle, $settings['handler_settings']['target_bundles'])) {
+      array_push($ers, $field);
+    }
+  }
+
+  foreach ($ers as $er) {
+    $nids = \Drupal::entityQuery($er->get('entity_type'))
+      ->condition('type', $er->get('bundle'))
+      ->condition($er->get('field_name'), $current_id, 'IN')
+      ->execute();
+
+    foreach ($nids as $nid) {
+      $node = \Drupal\node\Entity\Node::load($nid);
+
+      $target_ids = $node->get($er->get('field_name'))->getValue();
+
+      $new_target_ids = array_filter($target_ids, function ($var) use($current_id) {
+        return $var['target_id'] !== $current_id;
+      });
+
+      $node->set($er->get('field_name'), $new_target_ids);
+
+      $node->save();
+    }
+  }
+}

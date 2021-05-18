@@ -93,6 +93,9 @@
       "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
       "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"]
     },
+    "patchLevel": {
+      "drupal/core": "-p2"
+    },
     "patches": {
       "drupal/address": {
         "Add support for feeds target https://www.drupal.org/project/address/issues/2882589": "https://www.drupal.org/files/issues/2019-04-19/address-feeds-address-target-2882589-23.patch"

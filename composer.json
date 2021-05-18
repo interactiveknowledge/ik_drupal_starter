@@ -125,12 +125,17 @@
     "patchLevel": {
       "drupal/core": "-p2"
     },
+    "drush": {
+      "services": {
+          "drush.services.yml": "^9"
+      }
+    },
     "patches": {
       "drupal/address": {
-        "Add support for feeds target https://www.drupal.org/project/address/issues/2882589": "https://www.drupal.org/files/issues/2019-04-19/address-feeds-address-target-2882589-23.patch"
+        "Add support for feeds target": "https://www.drupal.org/files/issues/2019-04-19/address-feeds-address-target-2882589-23.patch"
       },
       "drupal/anchor_link": {
-        "Add linkit support to url https://www.drupal.org/project/anchor_link/issues/2958532#comment-13776321": "https://www.drupal.org/files/issues/2020-08-04/anchor_link-linkit-support_2958532_0.patch"
+        "Add linkit support to url": "https://www.drupal.org/files/issues/2020-08-04/anchor_link-linkit-support_2958532_0.patch"
       },
       "drupal/automated_crop": {
         "Patch for reversed aspect ratio": "https://www.drupal.org/files/issues/2018-12-09/3017217-5.patch",
@@ -150,7 +155,7 @@
         "Undefined index type error": "https://www.drupal.org/files/issues/2020-09-16/date_popup-attribute_is_missing-3042555-16-8x1_1.patch"
       },
       "drupal/helper": {
-        "Patch entitybrowsertrait, https://www.drupal.org/project/entity_browser/issues/2816881#comment-13472529": "web/profiles/composer/ik_starter/patches/helper-patch_for_entitybrowserformtrait.patch"
+        "Patch entitybrowsertrait": "web/profiles/composer/ik_starter/patches/helper-patch_for_entitybrowserformtrait.patch"
       },
       "drupal/layout_library": {
         "Fix migration issue for fromEntity Error": "web/profiles/composer/ik_starter/patches/layout_library-Error-on-migration-with-fromEntity.patch",

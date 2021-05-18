@@ -1,0 +1,8 @@
+name: IK Config for Decoupled Sites
+description: Configuration files for decoupled Drupal sites.
+package: IK
+type: module
+core_version_requirement: ^9
+version: VERSION
+dependencies:
+  - ik_core

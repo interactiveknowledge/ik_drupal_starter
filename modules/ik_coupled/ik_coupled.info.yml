@@ -1,0 +1,8 @@
+name: IK Config for Coupled Sites
+description: Configuration files for traditional Drupal sites.
+package: IK
+type: module
+core_version_requirement: ^9
+version: VERSION
+dependencies:
+  - ik_core

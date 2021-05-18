@@ -7,7 +7,7 @@
 /**
  * Implements hook_install_tasks().
  */
-function ik_starter_install_tasks() {
+function ik_drupal_starter_install_tasks() {
   $tasks = [];
 
   return $tasks;

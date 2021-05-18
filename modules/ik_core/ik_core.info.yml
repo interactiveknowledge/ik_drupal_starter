@@ -4,3 +4,5 @@ package: IK
 type: module
 core_version_requirement: ^8.8 || ^9
 version: VERSION
+dependencies:
+  - drupal:node

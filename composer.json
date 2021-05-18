@@ -3,7 +3,7 @@
   "type": "drupal-profile",
   "description": "Interactive Knowledge's base Drupal site installation.",
   "license": "GPL-2.0-or-later",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "repositories": {
     "drupal": {
         "type": "composer",
@@ -22,7 +22,6 @@
     "drupal/anchor_link": "^2.5",
     "drupal/autocomplete_deluxe": "^2.0@RC",
     "drupal/backup_migrate": "^5.0@RC",
-    "drupal/block_field": "^1.0",
     "drupal/cache_control_override": "^1.0@alpha",
     "drupal/captcha": "^1.0",
     "drupal/chosen": "^3.0",
@@ -156,5 +155,7 @@
         "Patch for the above to follow it's extension": "web/profiles/composer/ik_starter/patches/search_api-entity-reference.patch"
       }
     }
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

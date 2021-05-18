@@ -18,7 +18,6 @@
     "drupal/ckeditor_indentblock": "^1.0@beta",
     "drupal/color_field": "2.x-dev",
     "drupal/config_split": "^1.6",
-    "drupal/console": "~1.0",
     "drupal/consumer_image_styles": "^4",
     "drupal/core": "^9.0",
     "drupal/devel": "^4.0",

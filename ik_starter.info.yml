@@ -71,7 +71,6 @@ install:
   - redirect_after_login
   - sendgrid_integration
   - automated_crop
-  - automated_crop_crop_provider
   - crop
   - image_widget_crop
   - easy_breadcrumb

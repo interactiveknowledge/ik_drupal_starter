@@ -3,7 +3,7 @@
   "type": "drupal-profile",
   "description": "Interactive Knowledge's base Drupal site installation.",
   "license": "GPL-2.0-or-later",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "require": {
     "drupal/address": "^1.8",
     "drupal/adminimal_admin_toolbar": "^1.11",
@@ -116,9 +116,6 @@
       },
       "drupal/date_popup": {
         "Undefined index type error": "https://www.drupal.org/files/issues/2020-09-16/date_popup-attribute_is_missing-3042555-16-8x1_1.patch"
-      },
-      "drupal/geolocation": {
-        "Patch for views grouped filters results": "https://www.drupal.org/files/issues/geolocation-8.x-1.7-grouped-views-filters-2778227-5_0.patch"
       },
       "drupal/helper": {
         "Patch entitybrowsertrait, https://www.drupal.org/project/entity_browser/issues/2816881#comment-13472529": "patches/helper-patch_for_entitybrowserformtrait.patch"

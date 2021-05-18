@@ -52,20 +52,27 @@ class SerializerJsonApi extends Serializer {
       $params['_format'] = 'json';
     }
 
-    $offset = isset($params['offset']) ? $params['offset'] : $this->view->pager->getOffset();
+    // $offset = isset($params['offset']) ? $params['offset'] : $this->view->pager->getOffset();
     $size = $this->view->pager->getItemsPerPage();
 
-    if (!isset($params['offset'])) {
-      $params['offset'] = 0;
-    }
-  
-    if (!isset($params['limit'])) {
-      $params['limit'] = $size;
+    if (!isset($params['page'])) {
+      $current = 0;
+      $params['page'] = 0;
+    } else {
+      $current = $params['page'];
     }
 
+    // if (!isset($params['offset'])) {
+    //   $params['offset'] = 0;
+    // }
+  
+    // if (!isset($params['limit'])) {
+    //   $params['limit'] = $size;
+    // }
+
     // Adds in additional pager details in case we want to show data in results (ex: "Showing 10 results of 91 total")
-    $current = (int) $params['offset'] / $params['limit'];
-    $pages = (int) $this->view->pager->getPagerTotal() + $current;
+    // $current = (int) $params['offset'] / $params['limit'];
+    $pages = (int) $this->view->pager->getPagerTotal();
 
     $links = [
       'self' => $path . http_build_query($params),
@@ -73,10 +80,11 @@ class SerializerJsonApi extends Serializer {
 
     if ($current > 0) {
       $links['first'] = $path . http_build_query(array_merge(
-        $params, ['offset' => 0, 'limit' => $size]
+        $params, ['page' => 0]
       ));
+
       $links['prev'] = $path . http_build_query(array_merge(
-        $params, ['offset' => max($offset - $size, 0), 'limit' => $size]
+        $params, ['page' => $current - 1]
       ));
     }
 
@@ -84,25 +92,25 @@ class SerializerJsonApi extends Serializer {
 
     if ($this->view->pager->hasMoreRecords()) {
       $links['next'] = $path . http_build_query(array_merge(
-        $params, ['offset' => $offset + $size, 'limit' => $size]
+        $params, ['page' => $current + 1]
       ));
 
       // Show the last link when there is a next option.
       $links['last'] = $path . http_build_query(array_merge(
-        $params, ['offset' => (ceil($total / $size) - 1) * $size, 'limit' => $size]
+        $params, ['page' => (ceil($total / $size) - 1)]
       ));
     }
     else {
       $links['last'] = $path . http_build_query(array_merge(
-        $params, ['offset' => (ceil($total / $size) - 1) * $size, 'limit' => $size]
+        $params, ['page' => (ceil($total / $size) - 1)]
       ));
     }
 
     $pager = [ 
       'current' => $current,
-      'items' => $total + ($current * $params['limit']),
+      'items' => $total,
       'pages' => $pages,
-      'offset' => $offset
+      // 'offset' => $offset
     ];
 
     // Add in our exposed filters for output on front-end form.

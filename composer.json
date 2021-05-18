@@ -3,7 +3,7 @@
   "type": "drupal-profile",
   "description": "Interactive Knowledge's base Drupal site installation.",
   "license": "GPL-2.0-or-later",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "require": {
     "drupal/address": "^1.8",
     "drupal/adminimal_admin_toolbar": "^1.11",

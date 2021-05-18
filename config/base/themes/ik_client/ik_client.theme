@@ -1,0 +1,14 @@
+<?php
+
+include('inc/page_attachments_alter.inc');
+
+include('inc/preprocess_block.inc');
+include('inc/preprocess_field.inc');
+include('inc/preprocess_form.inc');
+include('inc/preprocess_html.inc');
+include('inc/preprocess_media.inc');
+include('inc/preprocess_node.inc');
+include('inc/preprocess_page.inc');
+include('inc/preprocess_paragraph.inc');
+include('inc/preprocess_taxonomy.inc');
+include('inc/preprocess_views.inc');

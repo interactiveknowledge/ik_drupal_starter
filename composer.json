@@ -172,14 +172,5 @@
   "config": {
     "preferred-install": "dist",
     "sort-packages": true
-  },
-  "scripts": {
-    "ik-starter-move-libraries": "cp -R libraries/* ../../../libraries/*",
-    "post-install-cmd": [
-      "@ik-starter-move-libraries"
-    ],
-    "post-update-cmd": [
-      "@ik-starter-move-libraries"
-    ]
   }
 }

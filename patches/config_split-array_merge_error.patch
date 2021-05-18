@@ -1,0 +1,31 @@
+From c5579a191d412319ccdf11d3b45ee0c22d3a03c4 Mon Sep 17 00:00:00 2001
+From: Rosemary Stanley <rosemary@interactiveknowledge.com>
+Date: Fri, 24 Apr 2020 11:03:34 -0400
+Subject: [PATCH] Patch for config split error
+
+---
+ .../config_split/src/Plugin/ConfigFilter/SplitFilter.php  | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git web/modules/contrib/config_split/src/Plugin/ConfigFilter/SplitFilter.php web/modules/contrib/config_split/src/Plugin/ConfigFilter/SplitFilter.php
+index f7fbbd13e..e67b0b3a9 100644
+--- web/modules/contrib/config_split/src/Plugin/ConfigFilter/SplitFilter.php
++++ web/modules/contrib/config_split/src/Plugin/ConfigFilter/SplitFilter.php
+@@ -140,6 +140,14 @@ public function filterRead($name, $data) {
+       }
+     }
+ 
++    if (!isset($data['module'])) {
++      $data['module'] = [];
++    }
++
++    if (!isset($data['theme'])) {
++      $data['theme'] = [];
++    }
++
+     $data['module'] = array_merge($data['module'], $modules);
+     $data['theme'] = array_merge($data['theme'], $themes);
+     // Sort the modules.
+-- 
+2.21.1 (Apple Git-122.3)
+

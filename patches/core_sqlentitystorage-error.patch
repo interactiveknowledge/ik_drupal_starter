@@ -1,0 +1,25 @@
+From 68d5fa2ddde2429ac920f35ea54032aaf95f6cd2 Mon Sep 17 00:00:00 2001
+From: Rosemary Stanley <rosemary@interactiveknowledge.com>
+Date: Wed, 19 Aug 2020 10:56:19 -0400
+Subject: [PATCH] Patch sqlcontententitystorage
+
+---
+ web/core/lib/Drupal/Core/Entity/Sql/SqlContentEntityStorage.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git web/core/lib/Drupal/Core/Entity/Sql/SqlContentEntityStorage.php web/core/lib/Drupal/Core/Entity/Sql/SqlContentEntityStorage.php
+index 6ec85972a..083ce84cc 100644
+--- web/core/lib/Drupal/Core/Entity/Sql/SqlContentEntityStorage.php
++++ web/core/lib/Drupal/Core/Entity/Sql/SqlContentEntityStorage.php
+@@ -1277,7 +1277,7 @@ protected function loadFromDedicatedTables(array &$values, $load_from_revision)
+ 
+         // Ensure that records for non-translatable fields having invalid
+         // languages are skipped.
+-        if ($langcode == LanguageInterface::LANGCODE_DEFAULT || ($definitions[$bundle][$field_name] && $definitions[$bundle][$field_name]->isTranslatable())) {
++        if ($langcode == LanguageInterface::LANGCODE_DEFAULT || $definitions[$bundle][$field_name]->isTranslatable()) {
+           if ($storage_definition->getCardinality() == FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED || count($values[$value_key][$field_name][$langcode]) < $storage_definition->getCardinality()) {
+             $item = [];
+             // For each column declared by the field, populate the item from the
+-- 
+2.24.3 (Apple Git-128)
+

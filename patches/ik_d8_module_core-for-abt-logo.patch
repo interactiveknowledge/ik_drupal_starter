@@ -1,0 +1,35 @@
+From 24faf43e2e30d8f72e69da1420ac9638a1a108ab Mon Sep 17 00:00:00 2001
+From: Rosemary Stanley <rosemary@interactiveknowledge.com>
+Date: Mon, 22 Feb 2021 08:14:41 -0500
+Subject: [PATCH] Patch ik_d8_module_core for abt logo
+
+---
+ .../themes/ik_d8_theme_api/css/base/elements.css   | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git web/modules/custom/ik_d8_module_core/themes/ik_d8_theme_api/css/base/elements.css web/modules/custom/ik_d8_module_core/themes/ik_d8_theme_api/css/base/elements.css
+index 167152013..27ae53b6f 100644
+--- web/modules/custom/ik_d8_module_core/themes/ik_d8_theme_api/css/base/elements.css
++++ web/modules/custom/ik_d8_module_core/themes/ik_d8_theme_api/css/base/elements.css
+@@ -16,3 +16,17 @@
+ .layout--threecol-25-50-25 .layout__region div .block {
+   padding: 0 20px;
+ }
++
++
++/* ABT patch */
++.adminimal-admin-toolbar .toolbar-tray .toolbar-menu a {
++  overflow: hidden;
++}
++
++.toolbar-icon-8 .toolbar-icon-admin-toolbar-tools-help:before,
++.adminimal-admin-toolbar .toolbar-tray-horizontal .menu-item--expanded:hover .toolbar-icon-admin-toolbar-tools-help:before, .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:hover:before, .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:active:before, .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help.is-active:before {
++  background-image: url('/themes/client/abt/static/images/abt-shield.png');
++  background-size: contain;
++  padding: 0!important;
++  width: 27px;
++}
+\ No newline at end of file
+-- 
+2.24.3 (Apple Git-128)
+

@@ -1,0 +1,78 @@
+From 25f2d47c4e73483353c49ca7be623dc159346cac Mon Sep 17 00:00:00 2001
+From: Rosemary Stanley <rosemary@interactiveknowledge.com>
+Date: Wed, 29 Apr 2020 11:03:27 -0400
+Subject: [PATCH] Reroll patch for images
+
+---
+ .../Plugin/DataType/ComputedImageStyleDerivatives.php | 11 +++++++----
+ .../Plugin/DataType/ComputedImageStyleDerivatives.php | 10 ++++++----
+ .../Plugin/DataType/ComputedImageStyleDerivatives.php | 10 ++++++----
+ 3 files changed, 19 insertions(+), 12 deletions(-)
+
+diff --git web/core/b/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php web/core/b/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php
+index 37c8db243..16c5b513d 100644
+--- web/core/b/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php
++++ web/core/b/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php
+@@ -64,10 +64,13 @@ protected function computeValue() {
+     /** @var \Drupal\image\ImageStyleInterface $style */
+     foreach ($image_style_storage->loadMultiple($image_style_ids) as $style) {
+       $this->addCacheableDependency($style);
+-      $value = $this->computeImageStyleMetadata($file, $width, $height, $style);
+-      if ($value) {
+-        $this->values[$style->getName()] = $typed_data_manager
+-          ->getPropertyInstance($this, $style->getName(), $value);
++
++      if ($file) {
++        $value = $this->computeImageStyleMetadata($file, $width, $height, $style);
++        if ($value) {
++          $this->values[$style->getName()] = $typed_data_manager
++            ->getPropertyInstance($this, $style->getName(), $value);
++        }
+       }
+     }
+   }
+diff --git web/core/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php web/core/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php
+index 37c8db243..0a8c91f27 100644
+--- web/core/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php
++++ web/core/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php
+@@ -64,10 +64,12 @@ protected function computeValue() {
+     /** @var \Drupal\image\ImageStyleInterface $style */
+     foreach ($image_style_storage->loadMultiple($image_style_ids) as $style) {
+       $this->addCacheableDependency($style);
+-      $value = $this->computeImageStyleMetadata($file, $width, $height, $style);
+-      if ($value) {
+-        $this->values[$style->getName()] = $typed_data_manager
+-          ->getPropertyInstance($this, $style->getName(), $value);
++      if ($file) {
++        $value = $this->computeImageStyleMetadata($file, $width, $height, $style);
++        if ($value) {
++          $this->values[$style->getName()] = $typed_data_manager
++            ->getPropertyInstance($this, $style->getName(), $value);
++        }
+       }
+     }
+   }
+diff --git web/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php web/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php
+index 37c8db243..0a8c91f27 100644
+--- web/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php
++++ web/core/modules/image/src/Plugin/DataType/ComputedImageStyleDerivatives.php
+@@ -64,10 +64,12 @@ protected function computeValue() {
+     /** @var \Drupal\image\ImageStyleInterface $style */
+     foreach ($image_style_storage->loadMultiple($image_style_ids) as $style) {
+       $this->addCacheableDependency($style);
+-      $value = $this->computeImageStyleMetadata($file, $width, $height, $style);
+-      if ($value) {
+-        $this->values[$style->getName()] = $typed_data_manager
+-          ->getPropertyInstance($this, $style->getName(), $value);
++      if ($file) {
++        $value = $this->computeImageStyleMetadata($file, $width, $height, $style);
++        if ($value) {
++          $this->values[$style->getName()] = $typed_data_manager
++            ->getPropertyInstance($this, $style->getName(), $value);
++        }
+       }
+     }
+   }
+-- 
+2.21.1 (Apple Git-122.3)
+

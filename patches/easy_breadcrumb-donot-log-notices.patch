@@ -1,0 +1,25 @@
+From 0a28719bef0488b1e33e9a579a3c7eff0b577c19 Mon Sep 17 00:00:00 2001
+From: Rosemary Stanley <rosemary@interactiveknowledge.com>
+Date: Fri, 26 Mar 2021 11:56:54 -0400
+Subject: [PATCH] Remove easy breadcrumb logs (too many!)
+
+---
+ .../contrib/easy_breadcrumb/src/EasyBreadcrumbBuilder.php       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git web/modules/contrib/easy_breadcrumb/src/EasyBreadcrumbBuilder.php web/modules/contrib/easy_breadcrumb/src/EasyBreadcrumbBuilder.php
+index 35a401f9e..7a987b42c 100755
+--- web/modules/contrib/easy_breadcrumb/src/EasyBreadcrumbBuilder.php
++++ web/modules/contrib/easy_breadcrumb/src/EasyBreadcrumbBuilder.php
+@@ -617,7 +617,7 @@ public function getTitleString(Request $route_request, RouteMatchInterface $rout
+ 
+     // If a route declares the title in an unexpected way, log and return NULL.
+     if (!is_string($title)) {
+-      $this->logger->get('easy_breadcrumb')->notice('Easy Breadcrumb could not determine the title to use for @path', ['@path' => $route_match->getRouteObject()->getPath()]);
++      // $this->logger->get('easy_breadcrumb')->notice('Easy Breadcrumb could not determine the title to use for @path', ['@path' => $route_match->getRouteObject()->getPath()]);
+ 
+       return NULL;
+     }
+-- 
+2.24.3 (Apple Git-128)
+

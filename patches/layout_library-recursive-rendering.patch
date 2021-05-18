@@ -1,0 +1,48 @@
+From d85bf55d2f05de8c5dd3b8a98498eb316123ac0e Mon Sep 17 00:00:00 2001
+From: Rosemary Stanley <rosemary@interactiveknowledge.com>
+Date: Fri, 12 Feb 2021 10:43:21 -0500
+Subject: [PATCH] Patch for recurisive rendering layout_library bug
+
+---
+ .../src/Plugin/SectionStorage/Library.php           | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
+
+diff --git web/modules/contrib/layout_library/src/Plugin/SectionStorage/Library.php web/modules/contrib/layout_library/src/Plugin/SectionStorage/Library.php
+index 6f1b45867..324e8dfa5 100644
+--- web/modules/contrib/layout_library/src/Plugin/SectionStorage/Library.php
++++ web/modules/contrib/layout_library/src/Plugin/SectionStorage/Library.php
+@@ -5,6 +5,7 @@
+ use Drupal\Component\Plugin\Context\ContextInterface as ComponentContextInterface;
+ use Drupal\Core\Access\AccessResult;
+ use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
++use Drupal\Core\Entity\EntityDisplayBase;
+ use Drupal\Core\Entity\EntityTypeInterface;
+ use Drupal\Core\Entity\EntityTypeManagerInterface;
+ use Drupal\Core\Entity\FieldableEntityInterface;
+@@ -269,14 +270,20 @@ public function isApplicable(RefinableCacheableDependencyInterface $cacheability
+       $entity = $values['layout']->getTargetEntityType();
+       $bundle = $values['layout']->getTargetBundle();
+       $view_mode = $values['view_mode'];
+-      $entity_view_display = $this->entityTypeManager
++
++      // Patch to stop recursive rendering.
++      // Will need to add additional view modes here if others are using layout_library
++      if ($view_mode === 'full' || $view_mode === 'default') {
++        $entity_view_display = $this->entityTypeManager
+         ->getStorage('entity_view_display')
+         ->load($entity . '.' . $bundle . '.' . $view_mode);
+ 
+-      if ($entity_view_display) {
+-        $is_library_enabled = $entity_view_display->getThirdPartySetting('layout_library', 'enable');
++        if ($entity_view_display) {
++          $is_library_enabled = $entity_view_display->getThirdPartySetting('layout_library', 'enable');
++        }
+       }
+     }
++
+     return $this->getSectionList() && $is_library_enabled;
+   }
+ 
+-- 
+2.24.3 (Apple Git-128)
+

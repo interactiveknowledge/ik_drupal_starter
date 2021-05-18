@@ -1,0 +1,37 @@
+From 1bb528750d5560a504ea8c89e55bcf42a903ca43 Mon Sep 17 00:00:00 2001
+From: Rosemary Stanley <rosemary@interactiveknowledge.com>
+Date: Thu, 17 Oct 2019 08:57:51 -0400
+Subject: [PATCH] Allow config to override server entity
+
+---
+ .../contrib/search_api/src/Entity/Server.php       | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git web/modules/contrib/search_api/src/Entity/Server.php web/modules/contrib/search_api/src/Entity/Server.php
+index 4515e1741..c44f26134 100644
+--- web/modules/contrib/search_api/src/Entity/Server.php
++++ web/modules/contrib/search_api/src/Entity/Server.php
+@@ -156,6 +156,20 @@ public function getBackend() {
+    * {@inheritdoc}
+    */
+   public function getBackendConfig() {
++    global $config;
++
++    if (isset($config['search_api.server.' . $this->id]) && isset($config['search_api.server.' . $this->id]['backend_config'])) {
++      foreach ($config['search_api.server.' . $this->id]['backend_config'] as $key => $value) {
++        if (is_array($value)) {
++          foreach ($value as $k => $v) {
++            $this->backend_config[$key][$k] = $v;
++          }
++        } else {
++          $this->backend_config[$key] = $value;
++        }
++      }
++    }
++  
+     return $this->backend_config;
+   }
+ 
+-- 
+2.21.0 (Apple Git-122)
+

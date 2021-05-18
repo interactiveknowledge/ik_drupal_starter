@@ -1,0 +1,25 @@
+From b48c5604b9b9072cb32fb1f5b20e83701d060520 Mon Sep 17 00:00:00 2001
+From: Rosemary Stanley <rosemary@interactiveknowledge.com>
+Date: Tue, 23 Mar 2021 12:28:39 -0400
+Subject: [PATCH] Add another patch for search api entity reference
+
+---
+ .../search_api/src/Plugin/views/filter/SearchApiReference.php   | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git web/modules/contrib/search_api/src/Plugin/views/filter/SearchApiReference.php web/modules/contrib/search_api/src/Plugin/views/filter/SearchApiReference.php
+index 364db79d7..372aaa53f 100644
+--- web/modules/contrib/search_api/src/Plugin/views/filter/SearchApiReference.php
++++ web/modules/contrib/search_api/src/Plugin/views/filter/SearchApiReference.php
+@@ -20,7 +20,7 @@ class SearchApiReference extends EntityReference {
+   /**
+    * {@inheritdoc}
+    */
+-  public function init(ViewExecutable $view, DisplayPluginBase $display, array &$options = NULL) {
++  public function init(ViewExecutable $view, DisplayPluginBase $display, array &$options = NULL): void {
+     if (empty($this->definition['field_name'])) {
+       $this->definition['field_name'] = $options['field'];
+     }
+-- 
+2.24.3 (Apple Git-128)
+

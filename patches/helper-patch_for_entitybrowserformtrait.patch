@@ -1,0 +1,25 @@
+From ac10d34fc49a63506b6ff48072a141aaa3379d22 Mon Sep 17 00:00:00 2001
+From: Rosemary Stanley <rosemary@interactiveknowledge.com>
+Date: Fri, 26 Feb 2021 08:25:16 -0500
+Subject: [PATCH] Patch for helper EntityBrowserFormTrait
+
+---
+ web/modules/contrib/helper/src/EntityBrowserFormTrait.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git web/modules/contrib/helper/src/EntityBrowserFormTrait.php web/modules/contrib/helper/src/EntityBrowserFormTrait.php
+index 0e8e6ca56..4a7dfbf35 100644
+--- web/modules/contrib/helper/src/EntityBrowserFormTrait.php
++++ web/modules/contrib/helper/src/EntityBrowserFormTrait.php
+@@ -149,7 +149,7 @@ public static function processEntityBrowser(&$element, FormStateInterface $form_
+    */
+   public static function processEntityBrowserSelected(&$element, FormStateInterface $form_state, &$complete_form) {
+     $parents = array_slice($element['#array_parents'], -3, 2);
+-    $entity_ids = $form_state->getValue(array_merge($parents, ['browser', 'entity_ids']), '');
++    $entity_ids = $form_state->getValue('browser')['entity_ids']; 
+     $entities = empty($entity_ids) ? [] : self::loadEntityBrowserEntitiesByIds($entity_ids);
+     $entity_type_manager = \Drupal::entityTypeManager();
+ 
+-- 
+2.24.3 (Apple Git-128)
+

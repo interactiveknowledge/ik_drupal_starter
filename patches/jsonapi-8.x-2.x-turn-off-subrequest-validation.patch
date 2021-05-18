@@ -1,0 +1,19 @@
+diff --git a/core/modules/jsonapi/src/EventSubscriber/ResourceResponseValidator.php b/core/modules/jsonapi/src/EventSubscriber/ResourceResponseValidator.php
+index 61b5827fd9..ee650264d0 100644
+--- a/core/modules/jsonapi/src/EventSubscriber/ResourceResponseValidator.php
++++ b/core/modules/jsonapi/src/EventSubscriber/ResourceResponseValidator.php
+@@ -116,7 +116,13 @@ public function onResponse(FilterResponseEvent $event) {
+       return;
+     }
+ 
+-    $this->doValidateResponse($response, $event->getRequest());
++     // Problem with subrequests where all the requests are JSON:API
++    $request = $event->getRequest();
++    if (strpos($request->getRequestUri(), 'subrequests') !== FALSE) {
++      return;
++    }
++
++    $this->doValidateResponse($response, $request);
+   }
+ 
+   /**

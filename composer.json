@@ -3,7 +3,7 @@
   "type": "drupal-profile",
   "description": "Interactive Knowledge's base Drupal site installation.",
   "license": "GPL-2.0-or-later",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "require": {
     "drupal/address": "^1.8",
     "drupal/adminimal_admin_toolbar": "^1.11",
@@ -96,9 +96,47 @@
       "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"]
     },
     "patches": {
+      "drupal/address": {
+        "Add support for feeds target https://www.drupal.org/project/address/issues/2882589": "https://www.drupal.org/files/issues/2019-04-19/address-feeds-address-target-2882589-23.patch"
+      },
+      "drupal/anchor_link": {
+        "Add linkit support to url https://www.drupal.org/project/anchor_link/issues/2958532#comment-13776321": "https://www.drupal.org/files/issues/2020-08-04/anchor_link-linkit-support_2958532_0.patch"
+      },
+      "drupal/automated_crop": {
+        "Patch for reversed aspect ratio": "https://www.drupal.org/files/issues/2018-12-09/3017217-5.patch",
+        "Drupal 9 compatibility patches": "https://www.drupal.org/files/issues/2020-04-09/deprecated-3123489-3.patch"
+      },
       "drupal/core": {
           "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2020-02-07/2869592-remove-update-warning-34.patch",
           "Don't validate subrequest responses": "patches/jsonapi-8.x-2.x-turn-off-subrequest-validation.patch"
+      },
+      "drupal/crop": {
+        "Add automatic crop integration": "https://www.drupal.org/files/issues/2018-07-14/2830768-crop-automated_crop_integration-24.patch"
+      },
+      "drupal/config_split": {
+        "Fix array_merge error": "patches/config_split-array_merge_error.patch"
+      },
+      "drupal/date_popup": {
+        "Undefined index type error": "https://www.drupal.org/files/issues/2020-09-16/date_popup-attribute_is_missing-3042555-16-8x1_1.patch"
+      },
+      "drupal/geolocation": {
+        "Patch for views grouped filters results": "https://www.drupal.org/files/issues/geolocation-8.x-1.7-grouped-views-filters-2778227-5_0.patch"
+      },
+      "drupal/helper": {
+        "Patch entitybrowsertrait, https://www.drupal.org/project/entity_browser/issues/2816881#comment-13472529": "patches/helper-patch_for_entitybrowserformtrait.patch"
+      },
+      "drupal/layout_library": {
+        "Fix migration issue for fromEntity Error": "patches/layout_library-Error-on-migration-with-fromEntity.patch",
+        "Add hide preview checkbox": "https://www.drupal.org/files/issues/2019-11-07/3081497_add-hide-content-preview-02.patch",
+        "Recursion error fix": "patches/layout_library-recursive-rendering.patch"
+      },
+      "drupal/purge_purger_http": {
+        "Patch problem with HTTPS requests": "https://www.drupal.org/files/issues/2018-11-29/2892552-verify-option-scheme-update-6.patch"
+      },
+      "drupal/search_api": {
+        "Allow config in settings.php to override backend configurations": "patches/search_api-allow-config-to-override.patch",
+        "Add support for entity reference fields multiple": "https://www.drupal.org/files/issues/2020-04-02/search_api-2858061-17.patch",
+        "Patch for the above to follow it's extension": "patches/search_api-entity-reference.patch"
       }
     }
   }

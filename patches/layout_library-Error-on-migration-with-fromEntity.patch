@@ -1,0 +1,25 @@
+From af4ad3ab70b5affdb0ce80ac672678249320948f Mon Sep 17 00:00:00 2001
+From: Rosemary Stanley <rosemary@interactiveknowledge.com>
+Date: Wed, 20 Jan 2021 14:48:47 -0500
+Subject: [PATCH] Patch layout_library issue
+
+---
+ .../layout_library/src/Plugin/SectionStorage/Library.php        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git web/modules/contrib/layout_library/src/Plugin/SectionStorage/Library.php web/modules/contrib/layout_library/src/Plugin/SectionStorage/Library.php
+index 8b463272c..6f1b45867 100644
+--- web/modules/contrib/layout_library/src/Plugin/SectionStorage/Library.php
++++ web/modules/contrib/layout_library/src/Plugin/SectionStorage/Library.php
+@@ -287,7 +287,7 @@ public function setContext($name, ComponentContextInterface $context) {
+     $value = $context->getContextValue();
+     // This cannot be done with constraints because the context handler does not
+     // currently validate optional context definitions.
+-    if ($name === 'entity' && $value instanceof FieldableEntityInterface && $value->hasField('layout_selection') && !$value->get('layout_selection')->isEmpty()) {
++    if ($name === 'entity' && $value instanceof FieldableEntityInterface && $value->hasField('layout_selection') && !$value->get('layout_selection')->isEmpty() && $value->get('layout_selection')->entity) {
+       $name = 'layout';
+       $context = EntityContext::fromEntity($value->get('layout_selection')->entity);
+     }
+-- 
+2.24.3 (Apple Git-128)
+

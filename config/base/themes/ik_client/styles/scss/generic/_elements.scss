@@ -1,0 +1,135 @@
+/**
+ * This file is for setting styles at the basic html elements scope
+ * - Examples could include form elements such as inputs, buttons or anchors
+ */
+* {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: 2px solid $color--outline;
+}
+
+html {
+  // Sets up the Base 10 stuff for mixins/_typography.scss
+  // Adjusted to 56 because original site is set up at base 10px instead of 16px.
+  // Still use font sizes at / 10. Ex: 10px = fontSizeRem(1.0)
+  font-size: 56.5%; 
+  line-height: 1;
+}
+
+body {
+  @include font('body');
+  color: $color-black;
+  min-width: $min-page-width;
+  max-width: 100vw;
+  overflow-x: hidden;
+
+  a {
+    color: $color--link-default;
+    text-decoration: none;
+  }
+
+  h1, h2, h3, h4 {
+    margin-top: $spacing-sm;
+    margin-bottom: $spacing-xs;
+  }
+
+  h1, .h1 {
+    @include font('page-title');
+  }
+
+  h2, .h2 {
+    @include font('heading-2');
+  }
+
+  h3, .h3 {
+    @include font('heading-3');
+  }
+
+  h4, .h4 {
+    @include font('heading-4');
+  }
+
+  h5, .h5 {
+    @include font('heading-5');
+  }
+
+  h6, .h6 {
+    @include font('heading-6');
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  figure {
+    margin: 0;
+
+    img {
+      margin: 0 auto;
+    }
+  }
+
+  blockquote {
+    p {
+    }
+  }
+
+  p {
+    @include font('body');
+    margin: 0 0 15px;
+  }
+
+  em {
+    text-decoration: italic;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  sup, sub {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  iframe {
+    width: 100%;
+  }
+
+  input {
+    //reset the inputs to 0 for ios
+    border-radius: 0;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+}

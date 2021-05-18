@@ -1,0 +1,85 @@
+/**
+ * Breakpoints
+ * - These are generic breakpoints. Use component-specific breakpoints for each component
+ */
+$screen-xs-min: 480px;
+$screen-sm-min: 768px;
+$screen-xs-max: $screen-sm-min - 1;
+$screen-md-min: 992px;
+$screen-sm-max: $screen-md-min - 1;
+$screen-lg-min: 1250px;
+$screen-md-max: $screen-lg-min - 1;
+$screen-xl-min: 1500px;
+$screen-lg-max: $screen-xl-min - 1;
+
+// Main Menu needs an additional breakpoint
+$screen-mainmenu-lg: 1145px;
+
+/**
+ * Spacing
+ */
+$spacing-xs: 10px;
+$spacing-sm: 20px;
+$spacing-rg: 80px;
+$spacing-lg: $spacing-rg;
+$spacing-xl: $spacing-rg;
+
+/**
+ * Layout
+ */
+$min-page-width: 320px; // Mnimum supported width (see _elements.scss body{})
+$cont-width: 1120px; // Width for our containers
+$cont-width-lg: 1280px; // Width for our large containers
+$cont-width-homepage: 1440px;
+$max-width: 90%; // Responsive width
+$gutter: 5%; // Gutter to accomodate for our responsive width
+
+/**
+ * Elements
+ */
+$button-height: 50px;
+$input-height: 50px;
+
+/**
+ * Colors
+ */
+$color-black: #000000;
+$color-white: #ffffff;
+$color-offwhite: #F5F5F5; // old variable =  $moh_row_hover
+$color-grey-light: #cdcccc;
+$color-grey: #888888;
+$color-grey-dark: #3c3936;
+$color-grey-border: #ababab;
+$color-grey-medium: #707070;
+$color-grey-border-light:  #d2d2d2;
+$color-grey-border-lighter: #eeeeee;
+
+// Primary Theme Colors.
+
+
+// Secondary theme colors.
+
+
+
+// Color for the nprogress loading bar
+$color-nprogress: $color-grey;
+
+// Other custom colors.
+$color--link-default: blue;
+$color--outline: blue;
+$color--overlay: rgba($color-black, 0.3);
+$color--unpublished: #f5d0d0;
+
+// Font Families: /styles/generic/_fonts.scss
+$font-opensans: 'OpenSans', 'Helvetica', 'Arial', sans-serif;
+
+$font-default: $font-opensans;
+$font-secondary: $font-opensans;
+
+// Font Weights: https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping
+$fontw-light: 300;
+$fontw-regular: 400;
+$fontw-medium: 500;
+$fontw-semibold: 600;
+$fontw-bold: 700;
+$fontw-black: 900;

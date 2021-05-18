@@ -3,6 +3,7 @@ type: theme
 base theme: classy
 package: IK
 version: VERSION
+core_version_requirement: ^9
 
 libraries:
   - ik_client/global-styling
@@ -11,7 +12,6 @@ regions:
   header: 'Header'
   highlighted: 'Highlighted'
   content: 'Content'
-  pre_footer: 'Pre-Footer'
   footer: 'Footer'
 
 ckeditor_stylesheets:

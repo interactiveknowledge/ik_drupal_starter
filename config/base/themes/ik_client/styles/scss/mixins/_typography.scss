@@ -1,0 +1,89 @@
+// https://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
+// This is the mixin we use in our font() mixin and for one-off font-sizes
+@mixin fontSizeRem($size: 1.6, $line-height: null) {
+  font-size: ($size * 10) + px;
+  font-size: $size + rem;
+
+  @if ($line-height) {
+    line-height: ($line-height * 10) + px;
+    line-height: $line-height + rem;
+  } @else {
+    line-height: normal;
+  }
+
+}
+
+/**
+ * Font Sizes should ideally be something defined in a style guide which comes from the visual design.
+ * - Currently there are some generic size titles, adjust and add as needed per project
+ */
+@mixin font($size, $bold: false) {
+  // Default project font-family (used in _elements.scss)
+  font-family: $font-default;
+
+  @if ($bold==true) {
+    font-weight: $fontw-bold;
+  }
+  @if ($size=='page-title') {
+    @include fontSizeRem(3.6, 4.2);
+
+  } @else if ($size=='heading-2') {
+    @include fontSizeRem(3.0, 3.6);
+
+  } @else if ($size=='heading-3') {
+    @include fontSizeRem(2.6, 3.2);
+
+  } @else if ($size=='heading-4') {
+    @include fontSizeRem(2.2, 3.2);
+    font-weight: $fontw-bold;
+
+  } @else if ($size=='heading-5') {
+    @include fontSizeRem(2.0, 2.5);
+    font-family: $font-secondary;
+    font-weight: $fontw-bold;
+
+  } @else if ($size=='heading-6') {
+    @include fontSizeRem(2.2, 3.2);
+    font-family: $font-secondary;
+    font-weight: $fontw-bold;
+
+  } @else if ($size=='body') {
+    @include fontSizeRem(1.8, 3.0);
+
+  } @else if ($size=='body-lg') {
+    @include fontSizeRem(2.5, 3.6);
+
+  } @else if ($size=='body-sm') {
+    @include fontSizeRem(1.6, 2.4);
+
+  } 
+
+}
+
+@mixin inputPlaceholder {
+  $selector: '';
+  $prefixes: (
+      moz: "::-moz",
+      webkit: "::-webkit",
+      ie: ":-ms"
+  );
+  @each $prop, $value in $prefixes {
+      @if $prop != "moz" {
+          $selector: #{$value}-input-placeholder;
+      } @else {
+          $selector: #{$value}-placeholder;
+      }
+      @if & {
+          &#{$selector} {
+              @content;
+          }
+      } @else {
+          #{$selector} {
+              @content;
+          }
+      }
+  }
+  &::placeholder {
+    @content;
+  }
+}

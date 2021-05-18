@@ -1,0 +1,27 @@
+.node-preview-container {
+  background-color: #333;
+  color: #ccc;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+
+  a {
+    color: #ccc;
+
+    &:hover {
+      color: $color-white;
+    }
+  }
+
+  select {
+    color: $color-black;
+  }
+
+  & + div + .dialog-off-canvas-main-canvas {
+    margin-top: 44px;
+  }
+
+  & + div + div main,
+  & + div main {
+    @include container(true);
+  }
+}

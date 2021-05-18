@@ -1,0 +1,37 @@
+/**
+ * Create mixins to help with animations
+ */
+ 
+
+/**
+ * Animate
+ * Mixin for re-using basic animation code while overriding specifics, if necessary
+ */
+@mixin animate(
+  $name,
+  $duration: 0.3s,
+  $timing-function: ease-in-out,
+  $delay: 0s,
+  $iteration-count: infinite,
+  $direction: null,
+  $fill-mode: null,
+  $play-state: null
+) {
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-timing-function: $timing-function;
+  animation-delay: $delay;
+  animation-iteration-count: $iteration-count;
+
+  @if ($direction) {
+    animation-direction: $direction;
+  }
+
+  @if ($fill-mode) {
+    animation-fill-mode: $fill-mode;
+  }
+
+  @if ($play-state) {
+    animation-play-state: $play-state;
+  }
+}

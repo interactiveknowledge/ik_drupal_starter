@@ -1,0 +1,15 @@
+main {
+  z-index: 0;
+}
+
+.region {
+  &.region-header {
+    z-index: 1;
+  }
+
+  &.region-highlighted {
+    > div {
+      @include container(true);
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@mixin body($size: 'body', $max-width: '100%', $center: false) {
+  margin: 0 auto;
+  max-width: $max-width;
+
+  @if ($center == true) {
+    text-align: center;
+  }
+
+  &, p {
+    @include font($size);
+  }
+}

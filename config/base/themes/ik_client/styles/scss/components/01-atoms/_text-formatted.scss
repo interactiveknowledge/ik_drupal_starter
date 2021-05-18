@@ -1,0 +1,10 @@
+// This is wysiwyg text
+.text-formatted,
+.field--name-body {
+  
+}
+
+// Just apply to wysiwyg
+.cke_editable {
+  // @extend .text-formatted;
+}

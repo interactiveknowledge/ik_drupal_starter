@@ -1,0 +1,11 @@
+.view .pager {
+  &__item {
+    a {
+    }
+
+    &.is-active {
+      a {
+      }
+    }
+  }
+}

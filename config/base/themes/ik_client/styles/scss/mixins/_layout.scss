@@ -1,0 +1,70 @@
+/***
+ * Create mixins to help with layout
+ */
+
+/***
+ * Container
+ * - This is what we will include for the container of each component
+ * 
+ * @param {boolean} $large - If the container should be large
+ * @param {boolean} $full - If the max-width of container should be full-width
+ * @param {boolean} $force - If the container should be forced full width
+ */
+@mixin container($large: false, $full: false, $force: false) {
+  margin-left: auto;
+  margin-right: auto;
+
+  @if ($large == true) {
+    width: $cont-width-lg;
+  } @else {
+    width: $cont-width;
+  }
+
+  @if ($full == true) {
+    max-width: 100%;
+  } @else {
+    max-width: $max-width;
+  }
+
+  @if ($force == true) {
+    width: 100%;
+  }
+}
+
+/**
+ * Inner Container
+ * - This is used for containers inside of a normal container.
+ * It allows for us to have the content contained in the parent while giving it 100% width for responsiveness
+ * @TODO: make more dynamic for different instances/widths of inner containers
+ */
+@mixin innerContainer() {
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  width: $cont-width;
+}
+
+/**
+ * Breakpoint mixin.
+ */
+@mixin breakpoint($point) {
+	@if $point == xlarge {
+		@media screen and (min-width: $screen-xl-min) { @content; }
+	} @else if $point == large {
+		@media screen and (min-width: $screen-lg-min) { @content; }
+	}
+	@else if $point == medium {
+		@media screen and (min-width: $screen-md-min) { @content; }
+    @media print { @content; }
+	}
+	@else if $point == small {
+		@media screen and (min-width: $screen-sm-min)  { @content; }
+  }
+  @else if $point == xsmall {
+		@media screen and (min-width: $screen-xs-min)  { @content; }
+	}
+	@else {
+		@media screen and (min-width: $point) { @content; }
+	}
+}

@@ -1,0 +1,31 @@
+
+/**
+ * Import fonts and create font-face rules here
+ * @TODO add various font formats [otf,ttf,woff,eot]
+ * @see font-weight guidelines: https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping
+ */
+
+
+/**
+ * See variables file for font-weights.
+ * Try to set the font-family and weights in the component stylesheet if possible.
+ * Otherwise use these utility classes on markup if _necessary_.
+ */
+.fontw-light { font-weight: $fontw-light }
+.fontw-regular { font-weight: $fontw-regular }
+.fontw-medium { font-weight: $fontw-medium }
+.fontw-semibold { font-weight: $fontw-semibold }
+.fontw-bold { font-weight: $fontw-bold }
+.fontw-black { font-weight: $fontw-black }
+
+/**
+ * Simple helper class for nowrap white-space on text
+ * 
+ * X: text-
+ *    wrapping
+ * 
+ * ✓: no-text-wrapping
+ */
+.nowrap {
+  white-space: nowrap;
+}

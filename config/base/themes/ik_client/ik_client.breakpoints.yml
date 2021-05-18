@@ -1,0 +1,30 @@
+ik_client.xsmall:
+  label: xsmall
+  mediaQuery: 'all and (max-width: 480px)'
+  weight: 0
+  multipliers:
+    - 1x
+ik_client.small:
+  label: small
+  mediaQuery: 'all and (min-width: 481px) and (max-width: 768px)'
+  weight: 1
+  multipliers:
+    - 1x
+ik_client.medium:
+  label: medium
+  mediaQuery: 'all and (min-width: 769px) and (max-width: 992px)'
+  weight: 2
+  multipliers:
+    - 1x
+ik_client.large:
+  label: large
+  mediaQuery: 'all and (min-width: 993px) and (max-width: 1280px)'
+  weight: 3
+  multipliers:
+    - 1x
+ik_client.xlarge:
+  label: xlarge
+  mediaQuery: 'all and (min-width: 1281px)'
+  weight: 5
+  multipliers:
+    - 1x

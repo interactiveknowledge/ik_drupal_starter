@@ -1,0 +1,35 @@
+@import 'vendor/bootstrap';
+// Import individual bootstrap styles
+@import '../../node_modules/bootstrap/scss/mixins/screen-reader';
+
+@import 'vendor/unit';
+
+// Import variables
+@import 'variables';
+
+// Import Font Awesome after variables.
+// @import '../../node_modules/font-awesome/scss/font-awesome';
+
+// Import functions
+@import 'functions';
+
+// Import mixins (alphabetically)
+@import 'mixins/animations';
+@import 'mixins/body';
+@import 'mixins/layout';
+@import 'mixins/typography';
+
+// Import generic things (alphabetically)
+@import 'generic/reset'; // _reset first so it doesn't reset the others
+@import 'generic/elements';
+@import 'generic/fonts';
+@import 'generic/global';
+
+// Import components
+@import 'components/01-atoms/index';
+@import 'components/02-molecules/index';
+@import 'components/03-organisms/index';
+@import 'components/04-templates/index';
+@import 'components/05-pages/index';
+
+@import 'generic/ckeditor-override';

@@ -1,9 +1,9 @@
 {
-  "name": "interactiveknowledge/ik_starter",
+  "name": "interactiveknowledge/ik_drupal_starter",
   "type": "drupal-profile",
   "description": "Interactive Knowledge's base Drupal site installation.",
   "license": "GPL-2.0-or-later",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "repositories": {
     "drupal": {
         "type": "composer",

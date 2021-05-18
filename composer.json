@@ -72,7 +72,7 @@
     "drupal/token_filter": "^1.1",
     "drupal/twig_tweak": "^2.4",
     "drupal/upgrade_status": "^2.0",
-    "drupal/unpublished_nodes_redirect": "^1.1",
+    "drupal/unpublished_nodes_redirect": "^2.0@beta",
     "drupal/varnish_purge": "^2.0",
     "drupal/view_mode_page": "^4.0",
     "drupal/views_bulk_edit": "^2.1",

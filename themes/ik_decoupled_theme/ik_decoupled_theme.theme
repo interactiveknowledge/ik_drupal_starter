@@ -8,7 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
 
-function ik_d8_theme_api_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {
+function ik_decoupled_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {
   // Work-around for a core bug affecting admin themes. See issue #943212.
   if (isset($form_id)) {
     return;
@@ -47,7 +47,7 @@ function ik_d8_theme_api_form_system_theme_settings_alter(&$form, FormStateInter
   );
 }
 
-function ik_d8_theme_api_preprocess_html(&$variables) {
+function ik_decoupled_theme_preprocess_html(&$variables) {
   $variables['login_class'] = $variables['is_admin'] ? 'logged-in' : 'logged-out';
 
   /**
@@ -56,10 +56,10 @@ function ik_d8_theme_api_preprocess_html(&$variables) {
   $forwarding = theme_get_setting('frontend_forwarding');
   $frontendUrl = theme_get_setting('frontend_url');
 
-  $variables['#attached']['library'][] = 'ik_d8_theme_api/js-library';
-  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['frontendUrl'] = theme_get_setting('frontend_url');
-  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['frontendIframeUrl'] = theme_get_setting('frontend_iframe_url') ? theme_get_setting('frontend_iframe_url') :  theme_get_setting('frontend_url');
-  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['showIframe'] = theme_get_setting('frontend_show_iframe');
+  $variables['#attached']['library'][] = 'ik_decoupled_theme/js-library';
+  $variables['#attached']['drupalSettings']['ik_decoupled_theme']['frontendUrl'] = theme_get_setting('frontend_url');
+  $variables['#attached']['drupalSettings']['ik_decoupled_theme']['frontendIframeUrl'] = theme_get_setting('frontend_iframe_url') ? theme_get_setting('frontend_iframe_url') :  theme_get_setting('frontend_url');
+  $variables['#attached']['drupalSettings']['ik_decoupled_theme']['showIframe'] = theme_get_setting('frontend_show_iframe');
 
   $route = \Drupal::routeMatch()->getRouteObject();
   $is_admin = \Drupal::service('router.admin_context')->isAdminRoute($route);
@@ -96,7 +96,7 @@ function ik_d8_theme_api_preprocess_html(&$variables) {
     }
   }
 
-  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['vid'] = strtotime('now');
+  $variables['#attached']['drupalSettings']['ik_decoupled_theme']['vid'] = strtotime('now');
 
   $node = \Drupal::routeMatch()->getParameter('node');
   if ($node instanceof \Drupal\node\NodeInterface) {
@@ -104,17 +104,17 @@ function ik_d8_theme_api_preprocess_html(&$variables) {
     $vid = $node->getRevisionId();
 
     if ($vid) {
-      $variables['#attached']['drupalSettings']['ik_d8_theme_api']['vid'] = $vid;
+      $variables['#attached']['drupalSettings']['ik_decoupled_theme']['vid'] = $vid;
     }
   }
   
-  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['forwarding'] = (boolean) $forwarding;
-  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['isAdmin'] = $is_admin;
-  $variables['#attached']['drupalSettings']['ik_d8_theme_api']['currentPath'] = $current_uri;
+  $variables['#attached']['drupalSettings']['ik_decoupled_theme']['forwarding'] = (boolean) $forwarding;
+  $variables['#attached']['drupalSettings']['ik_decoupled_theme']['isAdmin'] = $is_admin;
+  $variables['#attached']['drupalSettings']['ik_decoupled_theme']['currentPath'] = $current_uri;
   
 }
 
-function ik_d8_theme_api_preprocess_page(&$variables) {
+function ik_decoupled_theme_preprocess_page(&$variables) {
   $variables['login_form'] = FALSE;
 
   if (!\Drupal::currentUser()->id()) {
@@ -127,10 +127,10 @@ function ik_d8_theme_api_preprocess_page(&$variables) {
 /**
  * Implements hook_theme_suggestions_HOOK_alter for blocks.
  */
-function ik_d8_theme_api_theme_suggestions_block_alter(&$suggestions, $variables) {
+function ik_decoupled_theme_theme_suggestions_block_alter(&$suggestions, $variables) {
 
   // Load theme suggestions for blocks from parent theme.
   foreach ($suggestions as &$suggestion) {
-    $suggestion = str_replace('ik_d8_theme_api_', 'adminimal_theme_', $suggestion);
+    $suggestion = str_replace('ik_decoupled_theme_', 'adminimal_theme_', $suggestion);
   }
 }

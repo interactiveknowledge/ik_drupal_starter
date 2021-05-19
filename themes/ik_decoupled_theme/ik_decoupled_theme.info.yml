@@ -1,11 +1,11 @@
-name: IK Drupal 8 API
+name: IK Drupal Decoupled Theme
 type: theme
 description: 'Barebones theme for usage when using Drupal as an API content store.'
 package: Core
 core_version_requirement: ^8 || ^9
 base theme: adminimal_theme
 libraries:
-  - ik_d8_theme_api/global-styling
+  - ik_decoupled_theme/global-styling
 regions:
   header: 'Header'
   pre_content: 'Pre-content'

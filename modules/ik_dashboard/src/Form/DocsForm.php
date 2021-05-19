@@ -28,7 +28,7 @@ class DocsForm extends ConfigFormBase {
 
 
   private function fields($type, $bundle) {
-    $entityManager = \Drupal::service('entity.manager');
+    $entityManager = \Drupal::service('entity_field.manager');
     $fields = []; 
   
     if (!empty($type) && !empty($bundle)) {

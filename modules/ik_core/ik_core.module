@@ -70,7 +70,7 @@ function ik_core_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
   if ($type !== 'paragraph') {
 
     // Find all of our fields that are paragraphs entity reference revisions.
-    $map = \Drupal::service('entity.manager')->getFieldMap();
+    $map = \Drupal::service('entity_field.manager')->getFieldMap();
     if (isset($map[$type])) {
       
       foreach ($map[$type] as $field => $data) {

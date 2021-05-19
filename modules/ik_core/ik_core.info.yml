@@ -7,3 +7,6 @@ version: VERSION
 dependencies:
   - drupal:node
   - drupal:metatag
+  - drupal:media
+  - drupal:crop
+  - drupal:metatag

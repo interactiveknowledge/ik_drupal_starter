@@ -3,7 +3,7 @@
   "type": "drupal-profile",
   "description": "Interactive Knowledge's base Drupal site installation.",
   "license": "GPL-2.0-or-later",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "repositories": {
     "drupal": {
         "type": "composer",
@@ -180,13 +180,11 @@
     "sort-packages": true
   },
   "scripts": {
-    "test-script": "echo \"HI THERE\"",
-    "test-update": "echo \"HI UPDATE\"",
-    "post-install-cmd": [
-      "@test-script"
-    ],
-    "post-update-cmd": [
-      "@test-update"
+    "post-package-install": [
+      "mkdir web/libraries",
+      "cp -R web/profiles/composer/ik_drupal_starter/base/libraries/ web/libraries/",
+      "mkdir web/themes/client",
+      "cp -R web/profiles/composer/ik_drupal_starter/base/themes/ik_client/ web/themes/client/ik_client"
     ]
   }
 }

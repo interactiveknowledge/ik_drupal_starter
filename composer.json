@@ -3,7 +3,7 @@
   "type": "drupal-profile",
   "description": "Interactive Knowledge's base Drupal site installation.",
   "license": "GPL-2.0-or-later",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "repositories": {
     "drupal": {
         "type": "composer",

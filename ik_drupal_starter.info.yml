@@ -113,4 +113,5 @@ install:
 # Note that this will not set any theme as the default theme.
 themes:
   - adminimal_theme
+  - ik_client
   - ik_d8_theme_api

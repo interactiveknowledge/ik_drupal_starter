@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+id: social_media
+label: 'Social Media'
+description: ''
+aspect_ratio: '1200:630'
+soft_limit_width: null
+soft_limit_height: null
+hard_limit_width: null
+hard_limit_height: null

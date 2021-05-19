@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies: {  }
+id: development
+label: Development
+description: 'Development settings'
+folder: ../config/development
+module:
+  devel: 0
+  devel_generate: 0
+theme: {  }
+blacklist:
+  - ik_d8_theme_api.settings
+  - ik_constant_contact.config
+  - ik_constant_contact.tokens
+graylist:
+  - core.extension
+  - simple_oauth.settings
+  - system.performance
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 2

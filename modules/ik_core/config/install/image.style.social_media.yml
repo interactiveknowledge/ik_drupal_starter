@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.social_media
+  module:
+    - crop
+name: social_media
+label: 'Social Media (1200x630)'
+effects:
+  f9203626-11b8-4726-81e1-65580858efe0:
+    uuid: f9203626-11b8-4726-81e1-65580858efe0
+    id: crop_crop
+    weight: -10
+    data:
+      crop_type: social_media
+      automatic_crop_provider: automated_crop_custom
+  394503c3-6e10-4825-b28c-cc69d1e4afd5:
+    uuid: 394503c3-6e10-4825-b28c-cc69d1e4afd5
+    id: image_scale
+    weight: 2
+    data:
+      width: 1200
+      height: null
+      upscale: false

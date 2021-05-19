@@ -18,7 +18,7 @@ function ik_drupal_starter_install_tasks() {
 /**
  * Sets the default and administration themes.
  */
-function lightning_set_default_theme() {
+function ik_drupal_starter_set_default_theme() {
   Drupal::configFactory()
     ->getEditable('system.theme')
     ->set('default', 'ik_client')

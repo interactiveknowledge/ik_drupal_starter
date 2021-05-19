@@ -5,8 +5,11 @@ type: module
 core_version_requirement: ^8.8 || ^9
 version: VERSION
 dependencies:
-  - drupal:node
+  - drupal:crop
+  - drupal:field
+  - drupal:field_group
+  - drupal:image
   - drupal:metatag
   - drupal:media
-  - drupal:crop
   - drupal:metatag
+  - drupal:node

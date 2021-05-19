@@ -100,7 +100,6 @@ install:
   - autocomplete_deluxe
   - chosen
   - chosen_lib
-  - eu_cookie_compliance
   - linkit
   - views_bulk_operations
   - actions_permissions

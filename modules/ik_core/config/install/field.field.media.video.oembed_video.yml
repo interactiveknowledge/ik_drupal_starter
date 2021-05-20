@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.storage.media.oembed_video
     - media.type.video
-id: media.video.field_media_oembed_video
+id: media.video.oembed_video
 field_name: oembed_video
 entity_type: media
 bundle: video

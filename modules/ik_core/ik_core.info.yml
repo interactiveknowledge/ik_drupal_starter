@@ -13,3 +13,5 @@ dependencies:
   - drupal:media
   - drupal:metatag
   - drupal:node
+  - image_widget_crop
+  - smart_trim

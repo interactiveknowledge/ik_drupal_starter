@@ -14,7 +14,6 @@ function ik_drupal_starter_install_tasks() {
 
   $tasks['ik_drupal_starter_set_default_theme'] = [];
   $tasks['ik_drupal_starter_set_metatag_defaults'] = [];
-  $tasks['ik_drupal_starter_set_pages'] = [];
 
   return $tasks;
 }
@@ -85,15 +84,5 @@ function ik_drupal_starter_set_metatag_defaults() {
         'twitter_cards_title' => '[current-page:metatag:og_title]',
       ])
       ->save(TRUE);
-  }
-}
-
-/**
- * Creates a homepage and a 404/Error page
- *
- * @return void
- */
-function ik_drupal_starter_set_pages() {
-  if (Drupal::moduleHandler()->moduleExists('node')) {
   }
 }

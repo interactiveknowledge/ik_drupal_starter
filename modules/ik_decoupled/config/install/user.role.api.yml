@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: { }
+id: api_user
+label: 'API user'
+weight: 7
+is_admin: null
+permissions:
+  - 'access content'
+  - 'access jsonapi resource list'
+  - 'restful get webform_rest_elements'
+  - 'restful post webform_rest_submit'
+  - 'view media'

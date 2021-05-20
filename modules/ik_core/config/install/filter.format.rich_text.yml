@@ -89,11 +89,12 @@ filters:
     status: true
     weight: -44
     settings:
-      default_view_mode: default
+      default_view_mode: wysiwyg
       allowed_media_types:
         document: document
         image: image
-      allowed_view_modes: {}
+        video: video
+      allowed_view_modes: {  }
   token_filter:
     id: token_filter
     provider: token_filter

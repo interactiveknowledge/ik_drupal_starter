@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: default_pages
+label: 'Default Pages'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  d13d4358-648d-473e-bc39-39deb2996756:
+    id: node_type
+    bundles:
+      landing_page: landing_page
+      page: page
+    negate: false
+    context_mapping:
+      node: node
+    uuid: d13d4358-648d-473e-bc39-39deb2996756
+selection_logic: and
+weight: -5
+relationships: {  }

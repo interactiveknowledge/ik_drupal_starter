@@ -1,0 +1,81 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.rich_text
+  module:
+    - ckeditor
+_core:
+  default_config_hash: 0bVELtfx9sXhjZ6s6W-dJo8SW-IR9jiEIEylzm-2Cro
+format: rich_text
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - '-'
+            - Bold
+            - Italic
+            - Strike
+            - Blockquote
+            - '-'
+            - RemoveFormat
+        -
+          name: Linking
+          items:
+            - Link
+            - Unlink
+            - Anchor
+        -
+          name: Lists
+          items:
+            - BulletedList
+            - NumberedList
+        -
+          name: Media
+          items:
+            - Table
+            - HorizontalRule
+            - DrupalMediaLibrary
+        -
+          name: 'Block Formatting'
+          items:
+            - JustifyRight
+            - JustifyCenter
+            - JustifyLeft
+            - '-'
+            - '-'
+            - Outdent
+            - Indent
+            - Styles
+        -
+          name: Tools
+          items:
+            - Undo
+            - Redo
+            - ShowBlocks
+            - Source
+            - Maximize
+  plugins:
+    stylescombo:
+      styles: "p.h2|Heading 2\r\np.h3|Heading 3\r\np.h4|Heading 4\r\np.h5|Heading 5\r\np.h6|Heading 6\r\nspan.small|Small Text"
+    drupallink:
+      linkit_enabled: true
+      linkit_profile: default
+    language:
+      language_list: un
+    indentblock:
+      enable: 1
+    tokenbrowser:
+      token_types: {  }
+image_upload:
+  status: true
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null

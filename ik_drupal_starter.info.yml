@@ -105,6 +105,7 @@ install:
   - actions_permissions
   - views_bulk_edit
   - xmlsitemap
+  - token_filter
   - ik_core
   - ik_dashboard
   - ik_entity_reference_delete

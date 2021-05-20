@@ -15,3 +15,9 @@ dependencies:
   - drupal:node
   - image_widget_crop
   - smart_trim
+  - editor
+  - ckeditor
+  - entity_embed
+  - linkit
+  - media
+  - token_filter

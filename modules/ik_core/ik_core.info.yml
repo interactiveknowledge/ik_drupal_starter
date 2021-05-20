@@ -21,3 +21,4 @@ dependencies:
   - linkit
   - media
   - token_filter
+  - file

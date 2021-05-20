@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.video.oembed_video
+    - field.field.media.video.field_transcript
+    - media.type.video
+  module:
+    - media
+    - text
+id: media.video.default
+targetEntityType: media
+bundle: video
+mode: default
+content:
+  oembed_video:
+    type: oembed
+    label: hidden
+    weight: 0
+    settings:
+      max_width: 0
+      max_height: 0
+    third_party_settings: {  }
+    region: content
+  field_transcript:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

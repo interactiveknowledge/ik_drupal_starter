@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: wysiwyg
+label: Wysiwyg
+effects:
+  869d922b-1696-41cf-be15-f3ab8483cddf:
+    uuid: 869d922b-1696-41cf-be15-f3ab8483cddf
+    id: image_scale
+    weight: 1
+    data:
+      width: 1080
+      height: null
+      upscale: false

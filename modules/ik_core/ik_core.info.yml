@@ -4,6 +4,10 @@ package: IK
 type: module
 core_version_requirement: ^8.8 || ^9
 version: VERSION
+
+libraries:
+  - ik_core/global-styling
+
 dependencies:
   - drupal:crop
   - drupal:field

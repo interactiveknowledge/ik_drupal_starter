@@ -33,34 +33,6 @@
   padding: 15px;
 }
 
-#toolbar-bar {
-  position: fixed;
-}
-
-.adminimal-admin-toolbar .toolbar-tray .toolbar-menu a {
-  overflow: hidden;
-}
-
-//Custom logo instead of D8
-.toolbar-icon-8 .toolbar-icon-admin-toolbar-tools-help:before,
-.adminimal-admin-toolbar .toolbar-tray-horizontal .menu-item--expanded:hover .toolbar-icon-admin-toolbar-tools-help:before, .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:hover:before, .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:active:before, .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help.is-active:before {
-  
-  background-size: contain;
-  padding: 0!important;
-  width: 27px;
-}
-
-// Dashboard logo
-.adminimal-admin-toolbar .toolbar-icon-ik-dashboard-main:before {
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHBhdGggZmlsbD0iI2FjYWNhYyIgZD0iTTEyLDJBMTAsMTAgMCAwLDAgMiwxMkExMCwxMCAwIDAsMCAxMiwyMkExMCwxMCAwIDAsMCAyMiwxMkExMCwxMCAwIDAsMCAxMiwyTTEyLDRBOCw4IDAgMCwxIDIwLDEyQzIwLDE0LjQgMTksMTYuNSAxNy4zLDE4QzE1LjksMTYuNyAxNCwxNiAxMiwxNkMxMCwxNiA4LjIsMTYuNyA2LjcsMThDNSwxNi41IDQsMTQuNCA0LDEyQTgsOCAwIDAsMSAxMiw0TTE0LDUuODlDMTMuNjIsNS45IDEzLjI2LDYuMTUgMTMuMSw2LjU0TDExLjgxLDkuNzdMMTEuNzEsMTBDMTEsMTAuMTMgMTAuNDEsMTAuNiAxMC4xNCwxMS4yNkM5LjczLDEyLjI5IDEwLjIzLDEzLjQ1IDExLjI2LDEzLjg2QzEyLjI5LDE0LjI3IDEzLjQ1LDEzLjc3IDEzLjg2LDEyLjc0QzE0LjEyLDEyLjA4IDE0LDExLjMyIDEzLjU3LDEwLjc2TDEzLjY3LDEwLjVMMTQuOTYsNy4yOUwxNC45Nyw3LjI2QzE1LjE3LDYuNzUgMTQuOTIsNi4xNyAxNC40MSw1Ljk2QzE0LjI4LDUuOTEgMTQuMTUsNS44OSAxNCw1Ljg5TTEwLDZBMSwxIDAgMCwwIDksN0ExLDEgMCAwLDAgMTAsOEExLDEgMCAwLDAgMTEsN0ExLDEgMCAwLDAgMTAsNk03LDlBMSwxIDAgMCwwIDYsMTBBMSwxIDAgMCwwIDcsMTFBMSwxIDAgMCwwIDgsMTBBMSwxIDAgMCwwIDcsOU0xNyw5QTEsMSAwIDAsMCAxNiwxMEExLDEgMCAwLDAgMTcsMTFBMSwxIDAgMCwwIDE4LDEwQTEsMSAwIDAsMCAxNyw5WiIgLz48L3N2Zz4=');
-  background-size: 24px;  
-}
-
-.adminimal-admin-toolbar .toolbar-tray-horizontal .menu-item--expanded:hover .toolbar-icon-ik-dashboard-main:before, .adminimal-admin-toolbar .toolbar-icon-ik-dashboard-main:hover:before, .adminimal-admin-toolbar .toolbar-icon-ik-dashboard-main:active:before, .adminimal-admin-toolbar .toolbar-icon-ik-dashboard-main.is-active:before {
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTEyLDJBMTAsMTAgMCAwLDAgMiwxMkExMCwxMCAwIDAsMCAxMiwyMkExMCwxMCAwIDAsMCAyMiwxMkExMCwxMCAwIDAsMCAxMiwyTTEyLDRBOCw4IDAgMCwxIDIwLDEyQzIwLDE0LjQgMTksMTYuNSAxNy4zLDE4QzE1LjksMTYuNyAxNCwxNiAxMiwxNkMxMCwxNiA4LjIsMTYuNyA2LjcsMThDNSwxNi41IDQsMTQuNCA0LDEyQTgsOCAwIDAsMSAxMiw0TTE0LDUuODlDMTMuNjIsNS45IDEzLjI2LDYuMTUgMTMuMSw2LjU0TDExLjgxLDkuNzdMMTEuNzEsMTBDMTEsMTAuMTMgMTAuNDEsMTAuNiAxMC4xNCwxMS4yNkM5LjczLDEyLjI5IDEwLjIzLDEzLjQ1IDExLjI2LDEzLjg2QzEyLjI5LDE0LjI3IDEzLjQ1LDEzLjc3IDEzLjg2LDEyLjc0QzE0LjEyLDEyLjA4IDE0LDExLjMyIDEzLjU3LDEwLjc2TDEzLjY3LDEwLjVMMTQuOTYsNy4yOUwxNC45Nyw3LjI2QzE1LjE3LDYuNzUgMTQuOTIsNi4xNyAxNC40MSw1Ljk2QzE0LjI4LDUuOTEgMTQuMTUsNS44OSAxNCw1Ljg5TTEwLDZBMSwxIDAgMCwwIDksN0ExLDEgMCAwLDAgMTAsOEExLDEgMCAwLDAgMTEsN0ExLDEgMCAwLDAgMTAsNk03LDlBMSwxIDAgMCwwIDYsMTBBMSwxIDAgMCwwIDcsMTFBMSwxIDAgMCwwIDgsMTBBMSwxIDAgMCwwIDcsOU0xNyw5QTEsMSAwIDAsMCAxNiwxMEExLDEgMCAwLDAgMTcsMTFBMSwxIDAgMCwwIDE4LDEwQTEsMSAwIDAsMCAxNyw5WiIgLz48L3N2Zz4=');
-  background-size: 24px;
-}
-
 .messages {
   font-family: $font-secondary;
   text-align: center;

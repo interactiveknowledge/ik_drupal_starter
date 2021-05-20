@@ -105,8 +105,10 @@ install:
   - actions_permissions
   - views_bulk_edit
   - xmlsitemap
+  - http_response_headers
   - ik_core
   - ik_dashboard
+  - ik_entity_reference_delete
 
 
 # List any themes that should be installed as part of the profile installation.

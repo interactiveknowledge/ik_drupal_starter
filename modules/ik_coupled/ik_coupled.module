@@ -1,0 +1,91 @@
+<?php
+
+/**
+ * @file
+ * Contains ik_coupled.module.
+ */
+
+use \Drupal\Core\Form\FormStateInterface;
+
+
+function ik_coupled_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  // Layout Builder field
+  // Set --None-- to Default instead when it's activated.
+  if (isset($form['layout_selection']) && isset($form['layout_selection']['widget']['#options']['_none'])) {
+    $form['layout_selection']['widget']['#options']['_none'] = 'Default';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function ik_coupled_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+
+  // Add the block type to the theme suggestions.
+  if ($hook === 'block') {
+    $block = isset($variables['elements']['content']['#block_content']) ? $variables['elements']['content']['#block_content'] : null;
+
+    if ($block && $block->bundle()) {
+      $suggestions[] = 'block__' . $block->bundle();
+    }
+  }
+
+  // Add Layout selection to field theme suggestions.
+  if ($hook === 'field') {
+    if (isset($variables['element']['#object'])) {
+      $entity = $variables['element']['#object'];
+
+      $suggestions[] = 'field__' . $variables['element']['#entity_type'] . '__' . $variables['element']['#field_name'] . '__' . $entity->bundle() . '__' . $variables['element']['#view_mode'];
+
+      if ($entity && $entity->hasField('layout_selection')) {
+        if ($entity->layout_selection && $entity->layout_selection->target_id) {
+          $selection = str_replace($entity->bundle() . '_', '', $entity->layout_selection->target_id);
+          $suggestions[] = 'field__' . $variables['element']['#entity_type'] . '__' . $variables['element']['#field_name'] . '__' . $entity->bundle() . '__layout_' . $selection;
+        }
+      } else {
+        $suggestions[] = 'field__' . $variables['element']['#entity_type'] . '__' . $variables['element']['#field_name'] . '__' . $entity->bundle() . '__layout_default';
+      }
+
+    }
+  }
+
+  // fieldset 
+  if ($hook === 'fieldset') {
+    $currentNode = \Drupal::routeMatch()->getParameter('node');
+    
+    if ($currentNode && is_object($currentNode)) {
+      $suggestions[] = 'fieldset__' . $currentNode->bundle();
+    }
+  }
+
+  if ($hook === 'form_element') {
+    $suggestions[] = 'form_element__' . $variables['element']['#type'];
+
+    $currentNode = \Drupal::routeMatch()->getParameter('node');
+    
+    if ($currentNode && is_object($currentNode)) {
+      $suggestions[] = 'form_element__' . $currentNode->bundle();
+      $suggestions[] = 'form_element__' . $variables['element']['#type'] . '__' . $currentNode->bundle();
+    }
+  }
+
+  if ($hook === 'page') {
+    $currentNode = \Drupal::routeMatch()->getParameter('node');
+    
+    if ($currentNode && is_object($currentNode)) {
+      $suggestions[] = 'page__node';
+      $suggestions[] = 'page__node__' . $currentNode->bundle();
+    }
+  }
+
+  // Add some additional view theme suggestions.
+  if ($hook === 'views_view') {
+    $view = $variables['view'];
+
+    if (isset($view->element['#name'])) {
+      $suggestions[] = 'views_view__' . $view->element['#name']; 
+      $suggestions[] = 'views_view__' . $view->element['#name'] . '__' . $view->current_display;
+    }
+  } 
+}

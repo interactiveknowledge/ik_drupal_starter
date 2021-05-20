@@ -1,8 +1,17 @@
-name: IK Config for Decoupled Sites
-description: Configuration files for decoupled Drupal sites.
+name: IK Config for Decoupled Drupal Sites
+description: Configuration files and helpful hooks for Drupal sites that are powering a decoupled front end.
 package: IK
 type: module
 core_version_requirement: ^9
 version: VERSION
 dependencies:
   - ik_core
+  - simple_oauth
+  - consumers
+  - consumer_image_styles
+  - decoupled_router
+  - hal
+  - jsonapi
+  - restui
+  - schemata_json_schema
+  - serialization

@@ -1,0 +1,10 @@
+# Put overrides to your pantheon.upstream.yml file here.
+# For more information, see: https://pantheon.io/docs/pantheon-yml/
+api_version: 1
+
+workflows:
+  deploy:
+    after:
+      - type: webphp
+        description: Post to Slack after deploy
+        script: private/scripts/default/slack-notifications.php

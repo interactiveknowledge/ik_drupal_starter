@@ -3,7 +3,7 @@
   "type": "drupal-profile",
   "description": "Interactive Knowledge's base Drupal site installation.",
   "license": "GPL-2.0-or-later",
-  "version": "1.0.35",
+  "version": "1.0.36",
   "repositories": {
     "drupal": {
         "type": "composer",
@@ -84,6 +84,7 @@
     "drupal/redirect_after_login": "^2.6",
     "drupal/restui": "^1.18",
     "drupal/scanner": "^1.0@RC",
+    "drupal/schemata": "^1.0@beta",
     "drupal/search_api": "^1.16",
     "drupal/search_api_autocomplete": "^1.4",
     "drupal/search_api_location": "^1.0@alpha",

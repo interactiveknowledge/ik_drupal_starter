@@ -141,6 +141,42 @@ function ik_core_entity_update (Drupal\Core\Entity\EntityInterface $entity) {
   }
 }
 
+ /**
+  * hook_tokens_alter
+  *
+  */
+function ik_core_tokens_alter(array &$replacements, array $context) {
+  if ($context['type'] == 'node' && !empty($context['data']['node'])) {
+    foreach ($context['tokens'] as $name => $original) {
+
+      /**
+       * Alters the summary token to force truncate on the body if the summary is left blank
+       * @see https://www.drupal.org/project/metatag/issues/2885825
+       */
+      if ($name == 'summary') {
+        $node = \Drupal::routeMatch()->getParameter('node');
+
+        // Check if we're in preview mode.
+        if (!$node) {
+          $node = \Drupal::routeMatch()->getParameter('node_preview');
+        }
+
+        if ($node) {
+          if ($node->hasField('body')) {
+            $output = $node->body->summary ? $node->body->summary : $node->body->value;
+            $output = strip_tags($output);
+            $truncate = new TruncateHTML();
+            $output = $truncate->truncateChars($output, 160);
+            $output = html_entity_decode($output);
+   
+            $replacements[$original] = $output;
+          }
+        }
+      }
+    }
+  }
+}
+
 
 /**
  * Returns an array of entities that should trigger invalidateTags when created/updated.

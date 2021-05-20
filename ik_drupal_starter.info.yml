@@ -106,6 +106,7 @@ install:
   - views_bulk_edit
   - xmlsitemap
   - token_filter
+  - pantheon_advanced_page_cache
   - ik_core
   - ik_dashboard
   - ik_entity_reference_delete

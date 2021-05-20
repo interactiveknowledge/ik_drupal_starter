@@ -42,7 +42,7 @@
     "drupal/entity_block": "^1.0@beta",
     "drupal/entity_embed": "^1.1",
     "drupal/entity_field_condition": "^1.2",
-    "drupal/entityqueue": "^1.1",
+    "drupal/entityqueue": "^1.2",
     "drupal/environment_indicator": "^4.0",
     "drupal/eu_cookie_compliance": "^1.14",
     "drupal/field_group": "^3.1",

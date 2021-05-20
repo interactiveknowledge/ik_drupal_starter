@@ -52,7 +52,7 @@ function ik_drupal_starter_set_metatag_defaults() {
       ->save(TRUE);
 
     Drupal::configFactory()
-      ->getEditable('metatag.metatag_defaults.global')
+      ->getEditable('metatag.metatag_defaults.node')
       ->set('tags', [
         'title' => '[node:title] | [site:name]',
         'canonical_url' => '[node:url]',

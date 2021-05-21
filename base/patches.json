@@ -30,6 +30,9 @@
     "Add hide preview checkbox": "https://www.drupal.org/files/issues/2019-11-07/3081497_add-hide-content-preview-02.patch",
     "Recursion error fix": "web/profiles/composer/ik_drupal_starter/patches/layout_library-recursive-rendering.patch"
   },
+  "drupal/metatag": {
+    "Expose entity metatags through JSONAPI": "https://www.drupal.org/files/issues/2020-02-29/2945817-93.patch"
+  },
   "drupal/purge_purger_http": {
     "Patch problem with HTTPS requests": "https://www.drupal.org/files/issues/2018-11-29/2892552-verify-option-scheme-update-6.patch"
   },

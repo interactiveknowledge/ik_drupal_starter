@@ -40,5 +40,8 @@
     "Allow config in settings.php to override backend configurations": "web/profiles/composer/ik_drupal_starter/patches/search_api-allow-config-to-override.patch",
     "Add support for entity reference fields multiple": "https://www.drupal.org/files/issues/2020-04-02/search_api-2858061-17.patch",
     "Patch for the above to follow it's extension": "web/profiles/composer/ik_drupal_starter/patches/search_api-entity-reference.patch"
+  },
+  "drupal/video_embed_field": {
+    "Vimeo provider patch for thumbnail error": "web/profiles/composer/ik_drupal_starter/patches/video_embed_field-2.2-fix_for_vimeo_thumbnail.patch"
   }
 }

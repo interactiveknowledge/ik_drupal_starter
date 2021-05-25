@@ -26,3 +26,4 @@ dependencies:
   - media
   - token_filter
   - file
+  - entity_reference

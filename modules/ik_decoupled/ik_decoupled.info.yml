@@ -12,6 +12,7 @@ dependencies:
   - decoupled_router
   - hal
   - jsonapi
+  - rest
   - restui
   - schemata_json_schema
   - serialization

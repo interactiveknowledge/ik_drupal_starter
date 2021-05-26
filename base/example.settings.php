@@ -76,8 +76,11 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
   } else if ($_ENV['PANTHEON_ENVIRONMENT'] === 'test') {
     $config['environment_indicator.indicator']['bg_color'] = '#ff6329';
     $config['environment_indicator.indicator']['name'] = 'Staging';
-  } else {
+  } else if ($_ENV['PANTHEON_ENVIRONMENT'] === 'dev') {
     $config['environment_indicator.indicator']['bg_color'] = '#cc0000';
+    $config['environment_indicator.indicator']['name'] = $_ENV['PANTHEON_ENVIRONMENT'];
+  } else {
+    $config['environment_indicator.indicator']['bg_color'] = '#9803fc';
     $config['environment_indicator.indicator']['name'] = $_ENV['PANTHEON_ENVIRONMENT'];
   }
 } else {

@@ -38,6 +38,10 @@ if (file_exists($local_settings)) {
  *  Start IK Customizations
  */
 
+$local_services = __DIR__ . '/services.local.yml';
+if (file_exists($local_services)) {
+  $settings['container_yamls'][] = $local_services;
+} 
 
 /**
  * Sync path.

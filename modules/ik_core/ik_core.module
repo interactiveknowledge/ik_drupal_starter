@@ -7,6 +7,7 @@
 
 use \Drupal\Core\Form\FormStateInterface;
 use \Drupal\paragraphs\Entity\Paragraph;
+use Urodoz\Truncate\TruncateService;
 
 
 
@@ -159,8 +160,8 @@ function ik_core_tokens_alter(array &$replacements, array $context) {
           if ($node->hasField('body')) {
             $output = $node->body->summary ? $node->body->summary : $node->body->value;
             $output = strip_tags($output);
-            $truncate = new TruncateHTML();
-            $output = $truncate->truncateChars($output, 160);
+            $truncateService = new TruncateService();
+            $output = $truncateService->truncate($output, 160);
             $output = html_entity_decode($output);
    
             $replacements[$original] = $output;

@@ -1,8 +1,5 @@
 langcode: en
 status: true
-dependencies:
-  module:
-    - node
 id: default_pages
 label: 'Default Pages'
 type: 'canonical_entities:node'

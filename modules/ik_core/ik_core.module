@@ -12,40 +12,46 @@ use Urodoz\Truncate\TruncateService;
 
 
 function ik_core_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
   /**
    *  Hide unused/unnecessary metatags.
+   *  Search field_metatags and field_meta_tags because each site is different.
    */
-  if (isset($form['field_meta_tags'])) {
-    // @TODO create an admin interface where we can set this.
-    // As well as change our own descriptions of the fields.
-    $keepFields = ['title', 'description', 'og_title', 'og_description', 'og_image', 'og_image_alt', 'google_plus_name', 'google_plus_description', 'twitter_cards_type', 'twitter_cards_description', 'twitter_cards_title'];
-    $sections = ['basic', 'open_graph', 'google_plus', 'twitter_cards', 'advanced', 'facebook'];
+  $metatagFieldNames = ['field_metatags', 'field_meta_tags'];
 
-    if (isset($form['field_meta_tags']['widget']) && isset($form['field_meta_tags']['widget'][0])) {
-      unset($form['field_meta_tags']['widget'][0]['intro_text']);
-      unset($form['field_meta_tags']['widget'][0]['advanced']);
-      unset($form['field_meta_tags']['widget'][0]['facebook']);
-
-      foreach ($sections as $section) {
-        if (isset($form['field_meta_tags']['widget'][0][$section])) {
-          foreach ($form['field_meta_tags']['widget'][0][$section] as $field => $data) {
-            
-            if (strpos($field, '#') === false && !in_array($field, $keepFields)) {
-              $form['field_meta_tags']['widget'][0][$section][$field]['#access'] = false;
+  foreach ($metatagFieldNames as $metatagFieldName) {
+    if (isset($form[$metatagFieldName])) {
+      // @TODO create an admin interface where we can set this.
+      // As well as change our own descriptions of the fields.
+      $keepFields = ['title', 'description', 'og_title', 'og_description', 'og_image', 'og_image_alt', 'google_plus_name', 'google_plus_description', 'twitter_cards_type', 'twitter_cards_description', 'twitter_cards_title'];
+      $sections = ['basic', 'open_graph', 'google_plus', 'twitter_cards', 'advanced', 'facebook'];
+  
+      if (isset($form[$metatagFieldName]['widget']) && isset($form[$metatagFieldName]['widget'][0])) {
+        unset($form[$metatagFieldName]['widget'][0]['intro_text']);
+        unset($form[$metatagFieldName]['widget'][0]['advanced']);
+        unset($form[$metatagFieldName]['widget'][0]['facebook']);
+  
+        foreach ($sections as $section) {
+          if (isset($form[$metatagFieldName]['widget'][0][$section])) {
+            foreach ($form[$metatagFieldName]['widget'][0][$section] as $field => $data) {
+              
+              if (strpos($field, '#') === false && !in_array($field, $keepFields)) {
+                $form[$metatagFieldName]['widget'][0][$section][$field]['#access'] = false;
+              }
             }
           }
         }
+  
+        // Set our own descriptions
+        $form[$metatagFieldName]['widget'][0]['basic']['#title'] = 'Google Search Results';
+        $form[$metatagFieldName]['widget'][0]['basic']['#description'] = 'The following tags will show in the page title of the browser and Google Search results.';
+        $form[$metatagFieldName]['widget'][0]['basic']['title']['#description'] = t('It is recommended that the title is no greater than 55 - 65 characters long, including spaces.');
+        $form[$metatagFieldName]['widget'][0]['basic']['description']['#description'] = t('A brief and concise summary of the page\'s content, preferably 320 characters or less.');
+        $form[$metatagFieldName]['widget'][0]['open_graph']['#title'] = 'Facebook Sharing Settings';
+        $form[$metatagFieldName]['widget'][0]['open_graph']['#description'] = 'These tags are also the default when others are not present.';
+        $form[$metatagFieldName]['widget'][0]['open_graph']['og_image']['#description'] = 'The URL of an image which should represent the content. The image must be at least 200 x 200 pixels in size; 600 x 316 pixels is a recommended minimum size, and for best results use an image least 1200 x 630 pixels in size. Supports PNG, JPEG and GIF formats.';
+        $form[$metatagFieldName]['widget'][0]['open_graph']['og_image_alt']['#description'] = 'A description of what is in the image, not a caption.';
       }
-
-      // Set our own descriptions
-      $form['field_meta_tags']['widget'][0]['basic']['#title'] = 'Google Search Results';
-      $form['field_meta_tags']['widget'][0]['basic']['#description'] = 'The following tags will show in the page title of the browser and Google Search results.';
-      $form['field_meta_tags']['widget'][0]['basic']['title']['#description'] = t('It is recommended that the title is no greater than 55 - 65 characters long, including spaces.');
-      $form['field_meta_tags']['widget'][0]['basic']['description']['#description'] = t('A brief and concise summary of the page\'s content, preferably 320 characters or less.');
-      $form['field_meta_tags']['widget'][0]['open_graph']['#title'] = 'Facebook Sharing Settings';
-      $form['field_meta_tags']['widget'][0]['open_graph']['#description'] = 'These tags are also the default when others are not present.';
-      $form['field_meta_tags']['widget'][0]['open_graph']['og_image']['#description'] = 'The URL of an image which should represent the content. The image must be at least 200 x 200 pixels in size; 600 x 316 pixels is a recommended minimum size, and for best results use an image least 1200 x 630 pixels in size. Supports PNG, JPEG and GIF formats.';
-      $form['field_meta_tags']['widget'][0]['open_graph']['og_image_alt']['#description'] = 'A description of what is in the image, not a caption.';
     }
   }
 }

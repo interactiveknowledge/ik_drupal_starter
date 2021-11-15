@@ -11,6 +11,7 @@
   },
   "drupal/core": {
       "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2020-02-07/2869592-remove-update-warning-34.patch",
+      "Add Views EntityReference filter to be available for all entity reference fields": "https://www.drupal.org/files/issues/2021-11-09/2429699-446.patch",
       "Don't validate subrequest responses": "web/profiles/composer/ik_drupal_starter/patches/jsonapi-8.x-2.x-turn-off-subrequest-validation.patch",
       "Media library edit button": "https://www.drupal.org/files/issues/2021-06-06/2985168-71.patch",
       "Media edit from wysiwyg https://www.drupal.org/project/drupal/issues/3168868#comment-13954462": "https://www.drupal.org/files/issues/2021-01-04/3168868-9.patch"

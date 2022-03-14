@@ -1,0 +1,38 @@
+bootstrap-js:
+  remote: http://getbootstrap.com/
+  license:
+    name: MIT
+    gpl-compatible: false
+  version: 4.3.1
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js: { type: external, minified: true }
+  dependencies:
+    - core/jquery
+
+bootstrap-css:
+  remote: http://getbootstrap.com/
+  license:
+    name: MIT
+    gpl-compatible: false
+  version: 4.3.1
+  css:
+    theme:
+      https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css: { type: external, minified: true }
+
+moment:
+  remote: http://momentjs.com/
+  license:
+    name: MIT
+    gpl-compatible: false
+  version: 2.24.0
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js: { type: external, minified: true }
+
+ik-modals:
+  js:
+    js/modals.js: {}
+  dependencies:
+    - ik_modals/bootstrap-js
+    - ik_modals/moment
+    - core/drupal
+    - core/drupalSettings

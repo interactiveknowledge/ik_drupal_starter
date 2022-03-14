@@ -1,0 +1,6 @@
+services:
+
+  # Modal service that allows us to get to entity type manager
+  ik_modals.modals:
+    class: Drupal\ik_modals\ModalService
+    arguments: ['@current_user', '@cache.default', '@config.factory', '@date.formatter', '@entity_type.manager', '@http_client', '@logger.factory', '@request_stack', '@tempstore.private']

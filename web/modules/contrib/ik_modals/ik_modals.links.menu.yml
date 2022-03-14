@@ -1,0 +1,22 @@
+
+# Modal menu items definition
+entity.modal.collection:
+  title: 'Modals'
+  route_name: entity.modal.collection
+  description: 'List Modal entities'
+  parent: system.admin_content
+  weight: 100
+
+# Modal type menu items definition
+entity.modal_type.collection:
+  title: 'Modal types'
+  route_name: entity.modal_type.collection
+  description: 'List Modal type (bundles)'
+  parent: system.admin_structure
+  weight: 99
+
+ik_modals.settings:
+  title: 'Modal Settings'
+  route_name: ik_modals.settings
+  description: 'Settings configuration for modals'
+  parent: system.admin_config

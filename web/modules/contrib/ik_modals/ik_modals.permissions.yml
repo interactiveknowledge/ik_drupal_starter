@@ -1,0 +1,33 @@
+add modal entities:
+  title: 'Create new Modal entities'
+
+administer modal entities:
+  title: 'Administer Modal entities'
+  description: 'Allow to access the administration form to configure Modal entities.'
+  restrict access: true
+
+delete modal entities:
+  title: 'Delete Modal entities'
+
+edit modal entities:
+  title: 'Edit Modal entities'
+
+view published modal entities:
+  title: 'View published Modal entities'
+
+view unpublished modal entities:
+  title: 'View unpublished Modal entities'
+
+view all modal revisions:
+  title: 'View all Modal revisions'
+
+view modal overview:
+  title: 'View Modal overview page'
+
+revert all modal revisions:
+  title: 'Revert all Modal revisions'
+  description: 'Role requires permission <em>view Modal revisions</em> and <em>edit rights</em> for modal entities in question or <em>administer modal entities</em>.'
+
+delete all modal revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Modal revisions</em> and <em>delete rights</em> for modal entities in question or <em>administer modal entities</em>.'

@@ -1,0 +1,25 @@
+{
+    "name": "drupal/ik_modals",
+    "description": "Modal content management module.",
+    "type": "drupal-module",
+    "homepage": "https://drupal.org/project/ik_modals",
+    "authors": [
+        {
+            "name": "Rosemary Stanley (rosemarystanley)",
+            "homepage": "https://www.drupal.org/u/rosemarystanley",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://drupal.org/project/issues/ik_modals",
+        "source": "https://cgit.drupalcode.org/ik_modals"
+    },
+    "require": {
+        "geoip2/geoip2": "~2.0"
+    },
+    "require-dev": {
+        "drupal/coder": "^8.2.12",
+        "squizlabs/php_codesniffer": "^2.9",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4"
+    }
+}

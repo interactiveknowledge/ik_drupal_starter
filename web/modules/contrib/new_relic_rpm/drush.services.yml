@@ -1,0 +1,6 @@
+services:
+  new_relic_rpm.commands:
+    class: \Drupal\new_relic_rpm\Commands\NewRelicRpmCommands
+    arguments: ['@new_relic_rpm.client']
+    tags:
+      - { name: drush.command }

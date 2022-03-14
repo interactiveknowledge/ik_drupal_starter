@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Contains installation and update hooks for Moderation dashboard.
+ */
+
+/**
+ * Creates the moderation_dashboard.settings config object.
+ */
+function moderation_dashboard_update_8100() {
+  \Drupal::configFactory()
+    ->getEditable('moderation_dashboard.settings')
+    ->set('redirect_on_login', TRUE)
+    ->save(TRUE);
+}
+
+/**
+ * Enable access condition on moderation dashboard.
+ */
+function moderation_dashboard_update_8101() {
+  $moderation_page = \Drupal::configFactory()->getEditable('page_manager.page.moderation_dashboard');
+  if ($moderation_page) {
+    $conditions = $moderation_page->get('access_conditions');
+    foreach ($conditions as $key => $condition) {
+      if ($condition['id'] === 'has_moderated_content_type') {
+        $conditions[$key]['enable'] = TRUE;
+      }
+      elseif ($condition['id'] === 'moderation_dashboard_access') {
+        $conditions[$key]['enable'] = TRUE;
+      }
+    }
+    $moderation_page
+      ->set('access_conditions', $conditions)
+      ->save(TRUE);
+  }
+}

@@ -1,0 +1,10 @@
+name: Chosen Library
+type: module
+description: Add <a href="https://harvesthq.github.com/chosen/">chosen</a> library definition.
+package: User interface
+core_version_requirement: ^8.8 || ^9 || ^10
+
+# Information added by Drupal.org packaging script on 2022-03-06
+version: '3.0.2'
+project: 'chosen'
+datestamp: 1646557970

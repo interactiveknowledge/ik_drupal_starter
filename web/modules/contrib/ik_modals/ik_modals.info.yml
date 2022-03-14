@@ -1,0 +1,15 @@
+name: Modal Management Module
+description: Modal content management module.
+package: IK
+type: module
+core_version_requirement: ^8.9 || ^9
+dependencies:
+  - drupal:address
+  - drupal:block
+  - drupal:datetime_range
+  - drupal:field_ui
+  - drupal:options
+# Information added by Drupal.org packaging script on 2021-07-27
+version: '3.0.8'
+project: 'ik_modals'
+datestamp: 1627404284

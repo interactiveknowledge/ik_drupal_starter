@@ -1,0 +1,7 @@
+autocomplete:
+  version: VERSION
+  css:
+    component:
+      css/anchor_link.autocomplete.css: {  }
+  dependencies:
+    - linkit/linkit.autocomplete

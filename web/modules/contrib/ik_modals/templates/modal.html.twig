@@ -1,0 +1,33 @@
+{#
+/**
+ * @file modal.html.twig
+ * Default theme implementation to present Modal data.
+ *
+ * This template is used when viewing Modal pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_modal()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes }} tabindex="-1" role="dialog" aria-hidden="true">
+  {% if content %}
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{- content -}}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

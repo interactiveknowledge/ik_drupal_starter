@@ -1,0 +1,114 @@
+<?php
+
+/**
+ * @file
+ * Contains ik_modals.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function ik_modals_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ik_modals module.
+    case 'help.page.ik_modals':
+      $output = '<p><a href="https://www.drupal.org/project/ik_modals">' . t('Please visit the module page for more information.') . '</a></p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ik_modals_theme() {
+  $theme = [];
+  $theme['modal'] = [
+    'render element' => 'elements',
+    'file' => 'modal.page.inc',
+    'template' => 'modal',
+  ];
+  $theme['modal_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'modal.page.inc',
+  ];
+  return $theme;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function ik_modals_theme_suggestions_modal(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#modal'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'modal__' . $sanitized_view_mode;
+  $suggestions[] = 'modal__' . $entity->bundle();
+  $suggestions[] = 'modal__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'modal__' . $entity->id();
+  $suggestions[] = 'modal__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_preprocess_ENTITY().
+ */
+function ik_modals_preprocess_block(&$variables) {
+  if (isset($variables['elements']) && isset($variables['elements']['#id']) && $variables['elements']['#id'] === 'modalsblock') {
+    $config = \Drupal::service('config.factory')->get('ik_modals.settings');
+    $service = \Drupal::service('ik_modals.modals');
+    $settings = $service->loadAllSettings();
+
+    // If using abstractAPI, use region_iso_code key instead of region_code
+    if (isset($settings['user']) && !isset($settings['user']['region_code']) && isset($settings['user']['region_iso_code'])) {
+      $settings['user']['region_code'] = $settings['user']['region_iso_code'];
+    }
+
+    $variables['#attached']['drupalSettings']['modals'] = $settings;
+    $variables['#attached']['library'][] = 'ik_modals/moment';
+
+    if ($config->get('bootstrap_css') !== 1) {
+      $variables['#attached']['library'][] = 'ik_modals/bootstrap-css';
+    }
+
+    if ($config->get('bootstrap_js') !== 1) {
+      $variables['#attached']['library'][] = 'ik_modals/bootstrap-js';
+    }
+
+    $variables['#attached']['library'][] = 'ik_modals/ik-modals';
+  }
+}
+
+/**
+ * Implements hook_preprocess_ENTITY().
+ */
+function ik_modals_preprocess_modal(array &$variables) {
+  $entity = $variables['elements']['#modal'];
+
+  $variables['attributes']['id'] = 'modal--' . $entity->id();
+  $variables['attributes']['aria-labelledby'] = 'modal--' . $entity->id() . '--label';
+  $variables['attributes']['class'][] = 'ik-modal';
+  $variables['attributes']['class'][] = 'modal';
+  $variables['attributes']['class'][] = 'modal--type-' . $entity->bundle();
+  $variables['attributes']['class'][] = 'fade';
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function ik_modals_form_alter(&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'modal_') === 0 && (strpos($form_id, '_add_form') !== FALSE || strpos($form_id, '_edit_form'))) {
+    $service = \Drupal::service('ik_modals.modals');
+
+    // Don't show location fields if geolocation isn't activated.
+    if ($service->isGeolocationActive() === FALSE) {
+      $form['user_country']['#access'] = FALSE;
+      $form['user_states']['#access'] = FALSE;
+    }
+  }
+}

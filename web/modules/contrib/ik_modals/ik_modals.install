@@ -1,0 +1,30 @@
+<?php
+
+
+/**
+ * Implements hook_uninstall().
+ */
+function ik_modals_uninstall() {
+  \Drupal::configFactory()->getEditable('ik_modals.settings')->clear('ik_modals.settings')->save();
+}
+
+/**
+ * Update config to handle updated IP geolocation service handling.
+ */
+function ik_modals_update_9000() {
+  $config = \Drupal::service('config.factory')->getEditable('ik_modals.settings');
+
+
+  if ($config->get('api_key')) {
+    $config->set('ipdata_api_key', $config->get('api_key'));
+    $config->set('geolocation_service', 'ipdata');
+  }
+
+  if ($config->get('geoip2') === 1) {
+    $config->set('geolocation_service', 'geoip2');
+    $config->clear('geoip2');
+  }
+
+  $config->clear('api_key');
+  $config->save();
+}

@@ -1,0 +1,9 @@
+ik_modals.settings:
+  path: '/admin/config/modals'
+  defaults:
+    _form: '\Drupal\ik_modals\Form\ModalModuleSettingsForm'
+    _title: 'Modal Settings'
+  requirements:
+    _permission: 'view modal overview'
+  options:
+    _admin_route: TRUE

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'cc4d13f54c9dea2e34bd6b5c9dcdf928acde5c78',
+        'reference' => '508ffa2f5f384a78541d76d8d6cb243671492d2f',
         'name' => 'interactiveknowledge/ik_drupal_starter',
         'dev' => true,
     ),
@@ -2189,7 +2189,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'cc4d13f54c9dea2e34bd6b5c9dcdf928acde5c78',
+            'reference' => '508ffa2f5f384a78541d76d8d6cb243671492d2f',
             'dev_requirement' => false,
         ),
         'justinrainbow/json-schema' => array(

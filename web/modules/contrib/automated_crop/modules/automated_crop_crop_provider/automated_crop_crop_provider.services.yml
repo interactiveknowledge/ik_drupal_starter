@@ -1,0 +1,10 @@
+services:
+  automated_crop.provider.subscriber:
+    class: Drupal\automated_crop_crop_provider\EventSubscriber\AutomatedCropProvider
+    tags:
+      - { name: event_subscriber }
+  automated_crop.subscriber:
+    class: Drupal\automated_crop_crop_provider\EventSubscriber\AutomatedCrop
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }

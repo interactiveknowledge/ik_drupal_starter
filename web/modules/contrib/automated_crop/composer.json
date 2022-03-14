@@ -1,0 +1,14 @@
+{
+  "name": "drupal/automated_crop",
+  "description": "Provides automated cropping tools API.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/automated_crop",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/automated_crop"
+  },
+  "license": "GPL-2.0+",
+  "require": {
+    "drupal/core": "^8 || ^9",
+    "drupal/crop": "^2.x-dev@dev"
+  }
+}

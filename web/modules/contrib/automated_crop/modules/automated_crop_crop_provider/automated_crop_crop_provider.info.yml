@@ -1,0 +1,8 @@
+name: Automated Crop Api Provider
+description: 'Provides automated crop for crop api as fallback automatic crop provider.'
+core_version_requirement: ^8.8 || ^9
+package: Media
+type: module
+dependencies:
+  - crop:crop
+  - automated_crop:automated_crop

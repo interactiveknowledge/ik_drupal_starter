@@ -10,6 +10,7 @@
     "drupal/adminimal_theme": "^1.6",
     "drupal/anchor_link": "^2.5",
     "drupal/autocomplete_deluxe": "^2.0@RC",
+    "drupal/automated_crop": "2.0.x-dev@dev",
     "drupal/cache_control_override": "^1.0@alpha",
     "drupal/captcha": "^1.0",
     "drupal/chosen": "^3.0",

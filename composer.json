@@ -238,8 +238,6 @@
         "Add actions for VBO for moderation changes https://www.drupal.org/project/drupal/issues/2797583": "https://www.drupal.org/files/issues/2020-12-19/2797583-181.patch",
         "Add allow null": "https://www.drupal.org/files/issues/2021-12-09/2769407-51.patch",
         "GD toolkit available memory": "https://www.drupal.org/files/issues/2020-11-08/2583041-84.patch",
-        "Quickedit getPluginId on null error": "patches/core-quickedit_getPluginId-on-null.patch",
-        "Disable 404 and 403 logging": "patches/core_disable-404-and-403-errors.patch",
         "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch"
       },
       "drupal/config_split": {

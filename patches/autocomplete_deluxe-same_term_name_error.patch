@@ -1,0 +1,39 @@
+From 3deb132deb4f54f3f795a91677e2d0cd886e444a Mon Sep 17 00:00:00 2001
+From: Rosemary Stanley <rosemary@interactiveknowledge.com>
+Date: Mon, 14 Feb 2022 13:19:36 -0500
+Subject: [PATCH] Patch autocomplete_deluxe for duplicate term names
+
+---
+ .../src/Controller/AutocompleteDeluxeController.php             | 2 +-
+ .../src/Plugin/Field/FieldWidget/AutocompleteDeluxeWidget.php   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git web/modules/contrib/autocomplete_deluxe/src/Controller/AutocompleteDeluxeController.php web/modules/contrib/autocomplete_deluxe/src/Controller/AutocompleteDeluxeController.php
+index de6eca3e8b..448e41d937 100644
+--- web/modules/contrib/autocomplete_deluxe/src/Controller/AutocompleteDeluxeController.php
++++ web/modules/contrib/autocomplete_deluxe/src/Controller/AutocompleteDeluxeController.php
+@@ -52,7 +52,7 @@ public function handleAutocomplete(Request $request, $target_type, $selection_ha
+ 
+     $items = [];
+     foreach ($matches as $item) {
+-      $items[$item['value']] = $item['label'];
++      $items[$item['value']] = $item['value'];
+     }
+ 
+     $matches = $items;
+diff --git web/modules/contrib/autocomplete_deluxe/src/Plugin/Field/FieldWidget/AutocompleteDeluxeWidget.php web/modules/contrib/autocomplete_deluxe/src/Plugin/Field/FieldWidget/AutocompleteDeluxeWidget.php
+index 8e40492b34..eca524a28a 100644
+--- web/modules/contrib/autocomplete_deluxe/src/Plugin/Field/FieldWidget/AutocompleteDeluxeWidget.php
++++ web/modules/contrib/autocomplete_deluxe/src/Plugin/Field/FieldWidget/AutocompleteDeluxeWidget.php
+@@ -282,7 +282,7 @@ public function formElement(FieldItemListInterface $items, $delta, array $elemen
+   public static function implodeEntities(array $entities, $bundle = NULL) {
+     $typed_entities = [];
+     foreach ($entities as $entity) {
+-      $label = $entity->label();
++      $label = $entity->label() . ' (' . $entity->id() . ')';
+ 
+       // Extract entities belonging to the bundle in question.
+       if (!isset($bundle) || $entity->bundle() == $bundle) {
+-- 
+2.32.0 (Apple Git-132)
+

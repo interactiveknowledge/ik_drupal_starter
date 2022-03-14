@@ -52,7 +52,7 @@ class AutocompleteDeluxeController extends EntityAutocompleteController {
 
     $items = [];
     foreach ($matches as $item) {
-      $items[$item['value']] = $item['label'];
+      $items[$item['value']] = $item['value'];
     }
 
     $matches = $items;

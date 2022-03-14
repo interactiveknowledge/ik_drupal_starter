@@ -352,6 +352,17 @@
                 0 => '9.3.7',
             ),
         ),
+        'drupal/automated_crop' => array(
+            'pretty_version' => 'dev-2.0.x',
+            'version' => 'dev-2.0.x',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../web/modules/contrib/automated_crop',
+            'aliases' => array(
+                0 => '2.0.x-dev',
+            ),
+            'reference' => '4af957814b6deee19a2ef0e2b8243068d9fdd288',
+            'dev_requirement' => false,
+        ),
         'drupal/ban' => array(
             'dev_requirement' => false,
             'replaced' => array(

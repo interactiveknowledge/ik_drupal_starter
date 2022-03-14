@@ -2673,7 +2673,9 @@
                         "message": "Covered by Drupal's security advisory policy"
                     }
                 },
-                "patches_applied": []
+                "patches_applied": {
+                    "Patch term labels so terms with same name don't throw error": "patches/autocomplete_deluxe-same_term_name_error.patch"
+                }
             },
             "installation-source": "dist",
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2715,6 +2717,63 @@
                 "issues": "https://www.drupal.org/project/issues/autocomplete_deluxe"
             },
             "install-path": "../../web/modules/contrib/autocomplete_deluxe"
+        },
+        {
+            "name": "drupal/automated_crop",
+            "version": "dev-2.0.x",
+            "version_normalized": "dev-2.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/automated_crop.git",
+                "reference": "4af957814b6deee19a2ef0e2b8243068d9fdd288"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/crop": "^2.x-dev@dev"
+            },
+            "require-dev": {
+                "drupal/crop": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.0.x": "2.0.x-dev"
+                },
+                "drupal": {
+                    "version": "2.0.0-alpha2+2-dev",
+                    "datestamp": "1641820867",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "installation-source": "source",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "ikphilip",
+                    "homepage": "https://www.drupal.org/user/3549191"
+                },
+                {
+                    "name": "rosemarystanley",
+                    "homepage": "https://www.drupal.org/user/3356158"
+                },
+                {
+                    "name": "woprrr",
+                    "homepage": "https://www.drupal.org/user/858604"
+                }
+            ],
+            "description": "Provides automated cropping tools API.",
+            "homepage": "https://www.drupal.org/project/automated_crop",
+            "support": {
+                "source": "https://git.drupalcode.org/project/automated_crop",
+                "issues": "https://www.drupal.org/project/issues/automated_crop"
+            },
+            "install-path": "../../web/modules/contrib/automated_crop"
         },
         {
             "name": "drupal/blazy",

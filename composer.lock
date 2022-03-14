@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e31ff3763b1b4a1fa085a189b5416e97",
+    "content-hash": "8241cba2464a8ec376905665d2481fac",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2557,6 +2557,60 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/autocomplete_deluxe",
                 "issues": "https://www.drupal.org/project/issues/autocomplete_deluxe"
+            }
+        },
+        {
+            "name": "drupal/automated_crop",
+            "version": "dev-2.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/automated_crop.git",
+                "reference": "4af957814b6deee19a2ef0e2b8243068d9fdd288"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/crop": "^2.x-dev@dev"
+            },
+            "require-dev": {
+                "drupal/crop": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.0.x": "2.0.x-dev"
+                },
+                "drupal": {
+                    "version": "2.0.0-alpha2+2-dev",
+                    "datestamp": "1641820867",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "ikphilip",
+                    "homepage": "https://www.drupal.org/user/3549191"
+                },
+                {
+                    "name": "rosemarystanley",
+                    "homepage": "https://www.drupal.org/user/3356158"
+                },
+                {
+                    "name": "woprrr",
+                    "homepage": "https://www.drupal.org/user/858604"
+                }
+            ],
+            "description": "Provides automated cropping tools API.",
+            "homepage": "https://www.drupal.org/project/automated_crop",
+            "support": {
+                "source": "https://git.drupalcode.org/project/automated_crop",
+                "issues": "https://www.drupal.org/project/issues/automated_crop"
             }
         },
         {
@@ -16779,6 +16833,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/autocomplete_deluxe": 5,
+        "drupal/automated_crop": 20,
         "drupal/cache_control_override": 15,
         "drupal/ckeditor_indentblock": 10,
         "drupal/ckeditor_tabletoolstoolbar": 5,
